@@ -1,0 +1,16 @@
+# 내부 연구 자료 — 절대 공개 레포에 올라가지 않도록
+TOKEN-COMPARISON-*.md
+benchmark-*.ps1
+benchmark-*.json
+*-internal.md
+
+# 도구 로컬 상태
+.omc/
+
+# 에디터
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
