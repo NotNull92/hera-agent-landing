@@ -1,0 +1,77 @@
+# Hera Agent landing — bot policy
+# AI training crawlers: disallowed
+# Search engines: allowed
+
+# --- OpenAI ---
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: OAI-SearchBot
+Disallow: /
+
+# --- Anthropic ---
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+# --- Google AI (search itself still allowed via default Googlebot) ---
+User-agent: Google-Extended
+Disallow: /
+
+# --- Common Crawl (feeds many LLMs) ---
+User-agent: CCBot
+Disallow: /
+
+# --- Perplexity ---
+User-agent: PerplexityBot
+Disallow: /
+
+User-agent: Perplexity-User
+Disallow: /
+
+# --- ByteDance / TikTok ---
+User-agent: Bytespider
+Disallow: /
+
+# --- Meta ---
+User-agent: FacebookBot
+Disallow: /
+
+User-agent: Meta-ExternalAgent
+Disallow: /
+
+# --- Amazon ---
+User-agent: Amazonbot
+Disallow: /
+
+# --- Apple AI ---
+User-agent: Applebot-Extended
+Disallow: /
+
+# --- Misc AI training scrapers ---
+User-agent: Omgilibot
+Disallow: /
+
+User-agent: DuckAssistBot
+Disallow: /
+
+User-agent: cohere-ai
+Disallow: /
+
+User-agent: Diffbot
+Disallow: /
+
+User-agent: ImagesiftBot
+Disallow: /
+
+# --- Default: allow regular search crawlers ---
+User-agent: *
+Allow: /
