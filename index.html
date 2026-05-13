@@ -472,6 +472,22 @@
             letter-spacing: 0.04em;
         }
 
+        .features-tier-mascot {
+            margin-left: auto;
+            width: 110px;
+            height: auto;
+            display: block;
+            align-self: flex-end;
+            margin-bottom: -1.5rem;
+            filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.4));
+        }
+
+        @media (max-width: 768px) {
+            .features-tier-mascot {
+                display: none;
+            }
+        }
+
         .feature-card {
             background: transparent;
             border: 0;
@@ -1247,6 +1263,7 @@
         <div class="features-tier pro">
             <span class="features-tier-name">Pro</span>
             <span class="features-tier-desc">AI 코딩이 일상이 된 인디 개발자에게</span>
+            <img class="features-tier-mascot" src="docs/hera-thinking.png" alt="" />
         </div>
         <div class="features-grid">
             <div class="feature-card">
