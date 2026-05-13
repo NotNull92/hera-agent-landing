@@ -151,13 +151,13 @@
             display: none;
         }
 
-        @media (min-width: 960px) {
+        @media (min-width: 769px) {
             .hero-content {
                 max-width: 1100px;
                 display: grid;
-                grid-template-columns: 1fr 280px;
+                grid-template-columns: 1fr 220px;
                 grid-template-rows: auto auto;
-                column-gap: 4rem;
+                column-gap: 3rem;
                 row-gap: 3rem;
                 align-items: center;
                 text-align: left;
@@ -177,7 +177,7 @@
 
             .hero-mascot img {
                 width: 100%;
-                max-width: 280px;
+                max-width: 220px;
                 height: auto;
                 display: block;
                 filter: drop-shadow(0 12px 40px rgba(0, 0, 0, 0.5));
@@ -193,6 +193,17 @@
                 grid-column: 1 / -1;
                 grid-row: 3;
                 margin-top: 0;
+            }
+        }
+
+        @media (min-width: 1100px) {
+            .hero-content {
+                grid-template-columns: 1fr 280px;
+                column-gap: 4rem;
+            }
+
+            .hero-mascot img {
+                max-width: 280px;
             }
         }
 
@@ -956,10 +967,15 @@
             
             .hero-subtitle {
                 font-size: 1rem;
+                line-height: 1.5;
                 text-align: center;
             }
-            
+
             .hero-subtitle br {
+                display: none;
+            }
+
+            .section-header p br {
                 display: none;
             }
             
@@ -994,11 +1010,26 @@
             }
             
             .section-header h2 {
-                font-size: 1.75rem;
+                font-size: 2rem;
             }
-            
+
             .section-header p {
                 font-size: 1rem;
+            }
+
+            .features-tier {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+                margin: 3rem 0 2rem;
+            }
+
+            .features-tier-name {
+                font-size: 2rem;
+            }
+
+            .features-tier-desc {
+                font-size: 0.9375rem;
             }
 
             .problem-grid,
@@ -1067,6 +1098,11 @@
             
             .pricing-features li {
                 font-size: 0.875rem;
+            }
+
+            .pricing-features li.disabled {
+                text-decoration: none;
+                opacity: 0.7;
             }
 
             .faq-question {
