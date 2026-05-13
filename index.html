@@ -275,21 +275,20 @@
         }
 
         .problem-card {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-subtle);
-            border-radius: 8px;
-            padding: 2rem;
-            transition: all 0.3s ease;
+            background: transparent;
+            border: 0;
+            border-top: 1px solid rgba(201, 169, 110, 0.08);
+            padding: 2rem 0.5rem 0;
+            transition: all 0.4s ease;
         }
 
         .problem-card:hover {
-            border-color: var(--border-medium);
-            transform: translateY(-2px);
+            border-top-color: var(--border-medium);
         }
 
         .problem-card h3 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.25rem;
+            font-size: 1.375rem;
             font-weight: 600;
             color: var(--text-primary);
             margin-bottom: 0.75rem;
@@ -298,13 +297,7 @@
         .problem-card p {
             color: var(--text-secondary);
             font-size: 0.9375rem;
-            line-height: 1.6;
-        }
-
-        .problem-card .icon {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            opacity: 0.6;
+            line-height: 1.7;
         }
 
         /* Solution Section */
@@ -355,49 +348,50 @@
         }
 
         .feature-card {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-subtle);
-            border-radius: 8px;
-            padding: 2rem;
-            transition: all 0.3s ease;
+            background: transparent;
+            border: 0;
+            border-top: 1px solid rgba(201, 169, 110, 0.08);
+            padding: 2rem 0.5rem 0;
+            transition: all 0.4s ease;
             position: relative;
-            overflow: hidden;
         }
 
         .feature-card::before {
             content: '';
             position: absolute;
-            top: 0;
+            top: -1px;
             left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+            width: 40%;
+            height: 1px;
+            background: var(--accent-gold);
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.4s ease, width 0.4s ease;
         }
 
         .feature-card:hover::before {
-            opacity: 1;
-        }
-
-        .feature-card:hover {
-            border-color: var(--border-medium);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
+            opacity: 0.7;
+            width: 100%;
         }
 
         .feature-tag {
             display: inline-block;
-            padding: 0.25rem 0.75rem;
-            background: rgba(201, 169, 110, 0.1);
-            border: 1px solid var(--border-subtle);
-            border-radius: 4px;
-            font-size: 0.75rem;
+            padding: 0;
+            background: transparent;
+            border: 0;
+            font-size: 0.6875rem;
             font-weight: 500;
-            color: var(--accent-gold);
+            color: var(--text-muted);
             margin-bottom: 1rem;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.2em;
+        }
+
+        .feature-tag.pro {
+            padding: 0.25rem 0.625rem;
+            background: var(--accent-gold);
+            color: var(--bg-primary);
+            font-weight: 600;
+            letter-spacing: 0.1em;
         }
 
         .feature-card h3 {
@@ -499,17 +493,17 @@
         }
 
         .pricing-card {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-subtle);
-            border-radius: 8px;
-            padding: 2.5rem 2rem;
-            transition: all 0.3s ease;
+            background: transparent;
+            border: 0;
+            border-top: 1px solid rgba(201, 169, 110, 0.08);
+            padding: 2.5rem 1.5rem 0;
+            transition: all 0.4s ease;
             position: relative;
         }
 
         .pricing-card.featured {
-            border-color: var(--accent-gold);
-            background: linear-gradient(180deg, var(--bg-secondary) 0%, rgba(201, 169, 110, 0.05) 100%);
+            border-top-color: var(--accent-gold);
+            background: linear-gradient(180deg, rgba(201, 169, 110, 0.04) 0%, transparent 60%);
         }
 
         .pricing-card.featured::before {
@@ -986,7 +980,7 @@
     <section class="hero">
         <div class="hero-content">
             <div class="hero-badge">Open Source · MIT · Pro는 Patreon 한정</div>
-            <h1><em>AI가 만드는 Unity 코드,</em><br>매번 컴파일에서 막히고 있습니다</h1>
+            <h1>AI는 Unity를 추측합니다.<br><em>Hera Agent는 실측합니다.</em></h1>
             <p class="hero-subtitle">
                 LLM은 작년의 Unity API를 기억합니다. 당신은 매번 그 격차를 토큰과 시간으로 갚습니다.<br>
                 Hera Agent는 AI에게 살아 있는 Editor를 직접 만지게 합니다 — 추측 대신 실측.
@@ -1020,22 +1014,18 @@
         </div>
         <div class="problem-grid">
             <div class="problem-card">
-                <div class="icon">🐍</div>
                 <h3>Python 런타임</h3>
                 <p>가상환경, 의존성 충돌, 버전 호환성 — 설치에만 하루. Unity 버전이 바뀌면 또 하루.</p>
             </div>
             <div class="problem-card">
-                <div class="icon">🔌</div>
                 <h3>WebSocket 릴레이</h3>
                 <p>상시 동작하는 서버 프로세스를 띄우고, 끊어질 때마다 재연결 로직을 손봐야 합니다.</p>
             </div>
             <div class="problem-card">
-                <div class="icon">📋</div>
                 <h3>JSON-RPC 설정</h3>
                 <p>config 작성, 툴 등록, 클라이언트 재시작 — 새 프로젝트마다 처음부터 반복합니다.</p>
             </div>
             <div class="problem-card">
-                <div class="icon">🔄</div>
                 <h3>Domain Reload 단절</h3>
                 <p>스크립트 컴파일이 일어나면 연결이 끊깁니다. AI는 멈춘 자리에서 답을 기다립니다.</p>
             </div>
@@ -1104,7 +1094,7 @@
                 </div>
             </div>
             <div class="feature-card">
-                <span class="feature-tag">Pro</span>
+                <span class="feature-tag pro">Pro</span>
                 <h3>exec --check — 실행 전 컴파일 검증</h3>
                 <p>코드를 실행하지 않고 컴파일만 통과시킵니다. AI 에이전트의 "실행 → 실패 → 재시도" 루프를 한 번 건너뜁니다.</p>
                 <div class="feature-code">
@@ -1112,7 +1102,7 @@
                 </div>
             </div>
             <div class="feature-card">
-                <span class="feature-tag">Pro</span>
+                <span class="feature-tag pro">Pro</span>
                 <h3>introspection — 라이브 API 탐색</h3>
                 <p>실행 중인 어셈블리에서 타입·메서드·시그니처를 직접 회수합니다. AI가 LLM 학습 데이터가 아니라 지금 이 프로젝트에서 답을 가져옵니다.</p>
                 <div class="feature-code">
@@ -1120,7 +1110,7 @@
                 </div>
             </div>
             <div class="feature-card">
-                <span class="feature-tag">Pro</span>
+                <span class="feature-tag pro">Pro</span>
                 <h3>batch — 다중 명령 일괄 실행</h3>
                 <p>여러 명령을 JSON 한 파일로 묶어 한 번의 요청으로. CI/CD 파이프라인의 N번 HTTP 왕복이 1번이 됩니다.</p>
                 <div class="feature-code">
