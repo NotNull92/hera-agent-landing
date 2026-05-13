@@ -528,6 +528,21 @@
             }
         }
 
+        .section-mascot {
+            width: 120px;
+            height: auto;
+            display: block;
+            margin: 0 auto 1.5rem;
+            filter: drop-shadow(0 10px 28px rgba(0, 0, 0, 0.45));
+        }
+
+        @media (max-width: 768px) {
+            .section-mascot {
+                width: 90px;
+                margin-bottom: 1rem;
+            }
+        }
+
         .feature-card {
             background: transparent;
             border: 0;
@@ -709,6 +724,27 @@
         .pricing-card:hover {
             transform: translateY(-4px);
             box-shadow: 0 12px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .pricing-logo {
+            width: 100px;
+            height: 100px;
+            display: block;
+            margin: 0 auto 1rem;
+            object-fit: contain;
+        }
+
+        .pricing-card.featured .pricing-logo {
+            width: 120px;
+            height: 120px;
+        }
+
+        @media (max-width: 768px) {
+            .pricing-logo,
+            .pricing-card.featured .pricing-logo {
+                width: 80px;
+                height: 80px;
+            }
         }
 
         .pricing-name {
@@ -1476,6 +1512,7 @@
     <!-- Solution Section -->
     <section class="solution">
         <div class="section-header">
+            <img class="section-mascot" src="docs/hera-coding.png" alt="" />
             <h2><em>Solution</em></h2>
             <p>Hera는 그 모든 단계를 없앱니다.<br>설치하고, 명령하면, 끝입니다.</p>
         </div>
@@ -1634,6 +1671,7 @@ Connected: true | Project: MyGame | Unity: 6000.0.25f1
     <!-- Benchmark Section -->
     <section id="benchmark">
         <div class="section-header">
+            <img class="section-mascot" src="docs/hera-checking.png" alt="" />
             <h2><em>Benchmark</em></h2>
             <p>Hera가 컨텐츠 개발 일감으로 75번 호출했을 때<br>도구 자체가 토큰을 얼마나 쓸까요?</p>
         </div>
@@ -1727,6 +1765,7 @@ Connected: true | Project: MyGame | Unity: 6000.0.25f1
         </div>
         <div class="pricing-grid">
             <div class="pricing-card">
+                <img class="pricing-logo" src="docs/hera-lite-logo.png" alt="" />
                 <div class="pricing-name">Lite</div>
                 <div class="pricing-desc">혼자 만들 때, 시작할 때</div>
                 <div class="pricing-price">$0<span>/월</span></div>
@@ -1749,6 +1788,7 @@ Connected: true | Project: MyGame | Unity: 6000.0.25f1
                 <a href="https://github.com/NotNull92/hera-agent" class="pricing-cta" target="_blank">GitHub에서 공짜로 시작</a>
             </div>
             <div class="pricing-card featured">
+                <img class="pricing-logo" src="docs/hera-pro-logo.png" alt="" />
                 <div class="pricing-name">Indie</div>
                 <div class="pricing-desc">AI 코딩이 매일인 인디에게</div>
                 <div class="pricing-price">$9<span>/월</span></div>
