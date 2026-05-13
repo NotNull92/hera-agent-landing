@@ -180,9 +180,15 @@
                 filter: drop-shadow(0 12px 40px rgba(0, 0, 0, 0.5));
             }
 
-            .hero-code {
+            .hero-content .hero-cta-group {
                 grid-column: 1 / -1;
                 grid-row: 2;
+                justify-content: center;
+            }
+
+            .hero-code {
+                grid-column: 1 / -1;
+                grid-row: 3;
                 margin-top: 0;
             }
         }
@@ -336,6 +342,7 @@
 
         .hero-text > *,
         .hero-mascot,
+        .hero-content > .hero-cta-group,
         .hero-code {
             animation: hero-rise 0.85s ease-out backwards;
         }
@@ -343,13 +350,14 @@
         .hero-text > *:nth-child(1) { animation-delay: 0s; }
         .hero-text > *:nth-child(2) { animation-delay: 0.08s; }
         .hero-text > *:nth-child(3) { animation-delay: 0.18s; }
-        .hero-text > *:nth-child(4) { animation-delay: 0.28s; }
-        .hero-mascot { animation-delay: 0.32s; }
-        .hero-code { animation-delay: 0.45s; }
+        .hero-mascot { animation-delay: 0.28s; }
+        .hero-content > .hero-cta-group { animation-delay: 0.36s; }
+        .hero-code { animation-delay: 0.48s; }
 
         @media (prefers-reduced-motion: reduce) {
             .hero-text > *,
             .hero-mascot,
+            .hero-content > .hero-cta-group,
             .hero-code {
                 animation: none;
             }
@@ -1137,17 +1145,17 @@
                     LLM은 작년의 Unity API를 기억합니다. 당신은 매번 그 격차를 토큰과 시간으로 갚습니다.<br>
                     Hera Agent는 AI에게 살아 있는 Editor를 직접 만지게 합니다 — 추측 대신 실측.
                 </p>
-                <div class="hero-cta-group">
-                    <a href="https://github.com/NotNull92/hera-agent" class="btn-primary" target="_blank">
-                        ↓ Lite 무료로 시작
-                    </a>
-                    <a href="https://www.patreon.com/c/IndieAlchemist92" class="btn-secondary" target="_blank">
-                        Pro로 재시도 줄이기 →
-                    </a>
-                </div>
             </div>
             <div class="hero-mascot">
                 <img src="docs/hera.png" alt="Hera" />
+            </div>
+            <div class="hero-cta-group">
+                <a href="https://github.com/NotNull92/hera-agent" class="btn-primary" target="_blank">
+                    ↓ Lite 무료로 시작
+                </a>
+                <a href="https://www.patreon.com/c/IndieAlchemist92" class="btn-secondary" target="_blank">
+                    Pro로 재시도 줄이기 →
+                </a>
             </div>
             <div class="hero-code">
                 <pre><span class="comment">// AI가 추측한 타입을 실제 어셈블리에서 검증 (Pro)</span>
