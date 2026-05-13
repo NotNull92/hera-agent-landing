@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hera Agent — Unity를 터미널에서 지배하다</title>
+    <title>Hera Agent — Unity를 AI 에이전트로 지배하다</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -978,7 +978,7 @@
                 <li><a href="#pricing">Pricing</a></li>
                 <li><a href="#faq">FAQ</a></li>
             </ul>
-            <a href="https://github.com/NotNull92/unity-agent-cli" class="nav-cta" target="_blank">GitHub</a>
+            <a href="https://github.com/NotNull92/hera-agent" class="nav-cta" target="_blank">GitHub</a>
         </div>
     </nav>
 
@@ -986,13 +986,13 @@
     <section class="hero">
         <div class="hero-content">
             <div class="hero-badge">Open Source · MIT License</div>
-            <h1>Unity를 <em>터미널에서</em><br>지배하다</h1>
+            <h1>Unity를 <em>AI 에이전트가</em><br>지배하다</h1>
             <p class="hero-subtitle">
-                Python 설치, WebSocket 릴�, JSON-RPC 설정 이제 그만.<br>
-                하나의 바이너리로 Unity Editor를 직접 제어하세요.
+                Python 설치, WebSocket Relay, JSON-RPC 설정 이제 그만.<br>
+                AI 에이전트가 Unity Editor를 직접 제어하세요.
             </p>
             <div class="hero-cta-group">
-                <a href="https://github.com/NotNull92/unity-agent-cli/releases" class="btn-primary" target="_blank">
+                <a href="https://github.com/NotNull92/hera-agent/releases" class="btn-primary" target="_blank">
                     ↓ Lite 다운로드
                 </a>
                 <a href="https://www.patreon.com/c/IndieAlchemist92" class="btn-secondary" target="_blank">
@@ -1000,12 +1000,12 @@
                 </a>
             </div>
             <div class="hero-code">
-                <pre><span class="comment"># Unity가 켜져 있으면 바로 실행</span>
-<span class="prompt">$</span> <span class="command">hera-agent status</span>
-<span class="comment"># Play Mode 진입</span>
-<span class="prompt">$</span> <span class="command">hera-agent editor play --wait</span>
-<span class="comment"># 런타임에 C# 코드 실행</span>
-<span class="prompt">$</span> <span class="command">hera-agent exec "return Camera.main.name;"</span></pre>
+                <pre><span class="comment">// AI 에이전트가 Unity 상태를 자동 확인</span>
+<span class="command">hera-agent status</span>
+<span class="comment">// Play Mode 진입 후 완료 대기</span>
+<span class="command">hera-agent editor play --wait</span>
+<span class="comment">// 런타임에 C# 코드 직접 실행</span>
+<span class="command">hera-agent exec "return Camera.main.name;"</span></pre>
             </div>
         </div>
     </section>
@@ -1074,55 +1074,55 @@
     <section id="features">
         <div class="section-header">
             <h2>핵심 <em>기능</em></h2>
-            <p>터미널 하나로 Unity의 모든 것을 제어하세요</p>
+            <p>AI 에이전트가 Unity의 모든 것을 제어합니다</p>
         </div>
         <div class="features-grid">
             <div class="feature-card">
                 <span class="feature-tag">Lite</span>
-                <h3>exec — 런타임 C# 실행</h3>
-                <p>Unity Editor에서 임의의 C# 코드를 컴파일하고 실행. ECS, 에디터 API, 유틸리티까지 전부 접근 가능합니다.</p>
+                <h3>status — 상태 확인</h3>
+                <p>Unity Editor 연결 상태, 프로젝트 경로, 버전을 한눈에 확인합니다.</p>
                 <div class="feature-code">
-                    <span class="prompt">$</span> <span class="command">hera-agent exec "return World.All.Count;" <span class="keyword">--usings</span> Unity.Entities</span>
+                    <span class="command">hera-agent status</span>
                 </div>
             </div>
             <div class="feature-card">
                 <span class="feature-tag">Lite</span>
-                <h3>editor — Play Mode 제어</h3>
-                <p>Play, Stop, Pause, Asset Refresh를 명령어 하나로. --wait 명령어로 상태 완료까지 블로킹합니다.</p>
+                <h3>update — 자동 업데이트</h3>
+                <p>GitHub public 레포에서 최신 버전을 자동으로 다운로드하고 교체합니다.</p>
                 <div class="feature-code">
-                    <span class="prompt">$</span> <span class="command">hera-agent editor play <span class="keyword">--wait</span></span>
+                    <span class="command">hera-agent update</span>
                 </div>
             </div>
             <div class="feature-card">
                 <span class="feature-tag">Lite</span>
-                <h3>test — 테스트 자동화</h3>
-                <p>EditMode와 PlayMode 테스트를 터미널에서 실행. PlayMode는 도메인 리로드를 File Polling으로 우회합니다.</p>
+                <h3>uninstall — 완전 삭제</h3>
+                <p>바이너리, 설정 파일, PATH 항목을 모두 제거하고 흔적을 남기지 않습니다.</p>
                 <div class="feature-code">
-                    <span class="prompt">$</span> <span class="command">hera-agent test <span class="keyword">--mode</span> PlayMode <span class="keyword">--filter</span> MyTests</span>
+                    <span class="command">hera-agent uninstall</span>
                 </div>
             </div>
             <div class="feature-card">
                 <span class="feature-tag">Pro</span>
-                <h3>profiler — 성능 분석</h3>
-                <p>Profiler hierarchy를 터미널에서 드릴다운. depth, frame 범위, 정렬 기준까지 세밀하게 제어.</p>
+                <h3>install — PATH 자동 설치</h3>
+                <p>바이너리를 시스템 PATH에 자동으로 등록하고 어디서든 호출 가능하게 만듭니다.</p>
                 <div class="feature-code">
-                    <span class="prompt">$</span> <span class="command">hera-agent profiler hierarchy <span class="keyword">--depth</span> 3 <span class="keyword">--sort</span> self</span>
+                    <span class="command">hera-agent-pro install</span>
                 </div>
             </div>
             <div class="feature-card">
                 <span class="feature-tag">Pro</span>
-                <h3>batch — 다중 명령 일괄</h3>
-                <p>여러 명령을 하나의 HTTP 요청으로 묶어 실행. CI/CD 파이프라인에 최적화된 오케스트레이션.</p>
+                <h3>status — 상태 확인</h3>
+                <p>Unity Editor 연결 상태, 프로젝트 경로, 버전을 한눈에 확인합니다.</p>
                 <div class="feature-code">
-                    <span class="prompt">$</span> <span class="command">hera-agent batch <span class="keyword">--file</span> commands.json</span>
+                    <span class="command">hera-agent-pro status</span>
                 </div>
             </div>
             <div class="feature-card">
                 <span class="feature-tag">Pro</span>
-                <h3>introspection — 리플렉션 탐색</h3>
-                <p>describe_type, list_assemblies, find_method로 실행 중인 Unity의 실제 API를 라이브로 탐색.</p>
+                <h3>uninstall — 완전 삭제</h3>
+                <p>바이너리, 설정 파일, PATH 항목을 모두 제거하고 흔적을 남기지 않습니다.</p>
                 <div class="feature-code">
-                    <span class="prompt">$</span> <span class="command">hera-agent describe_type UnityEditor.EditorApplication</span>
+                    <span class="command">hera-agent-pro uninstall</span>
                 </div>
             </div>
         </div>
@@ -1157,18 +1157,27 @@
             <h2>실제 <em>사용 예시</em></h2>
         </div>
         <div class="hero-code" style="max-width: 800px;">
-            <pre><span class="comment"># 1. 연결 상태 확인</span>
-<span class="prompt">$</span> <span class="command">hera-agent status</span>
+            <pre><span class="comment">// AI 에이전트가 Unity 연결 상태를 확인</span>
+<span class="command">hera-agent status</span>
 Connected: true | Project: MyGame | Unity: 6000.0.25f1
 
-<span class="comment"># 2. Play Mode 진입하고 콘솔 에러 확인</span>
-<span class="prompt">$</span> <span class="command">hera-agent editor play --wait && hera-agent console --type error</span>
+<span class="comment">// AI 에이전트가 Play Mode 진입 후 콘솔 에러 확인</span>
+<span class="command">hera-agent editor play --wait && hera-agent console --type error</span>
 
-<span class="comment"># 3. 씬의 모든 칵메라 찾아서 위치 출력</span>
-<span class="prompt">$</span> <span class="command">hera-agent exec "return Camera.allCameras.Select(c => c.transform.position).ToList();"</span>
+<span class="comment">// AI 에이전트가 씬의 모든 칵메라 위치 출력</span>
+<span class="command">hera-agent exec "return Camera.allCameras.Select(c => c.transform.position).ToList();"</span>
 
-<span class="comment"># 4. 커스텀 툴 호출 (자동 발견됨)</span>
-<span class="prompt">$</span> <span class="command">hera-agent spawn --x 0 --y 5 --z 0 --prefab Enemy_Boss</span></pre>
+<span class="comment">// AI 에이전트가 커스텀 툴 호출 (자동 발견됨)</span>
+<span class="command">hera-agent spawn --x 0 --y 5 --z 0 --prefab Enemy_Boss</span>
+
+<span class="comment">// AI 에이전트가 성능 프로파일링</span>
+<span class="command">hera-agent-pro profiler hierarchy --depth 3 --sort self</span>
+
+<span class="comment">// AI 에이전트가 다중 명령 일괄 실행 (CI/CD)</span>
+<span class="command">hera-agent-pro batch --file deploy-commands.json</span>
+
+<span class="comment">// AI 에이전트가 실행 중인 Unity API 라이브 탐색</span>
+<span class="command">hera-agent-pro describe_type UnityEditor.EditorApplication</span></pre>
         </div>
     </section>
 
@@ -1183,7 +1192,7 @@ Connected: true | Project: MyGame | Unity: 6000.0.25f1
                 <div class="pricing-name">Lite</div>
                 <div class="pricing-desc">개인 프로젝트 · 학습용</div>
                 <div class="pricing-price">$0<span>/월</span></div>
-                <div class="pricing-period">영구 free</div>
+                <div class="pricing-period">영구 Lite</div>
                 <ul class="pricing-features">
                     <li>exec — 런타임 C# 실행</li>
                     <li>editor — Play Mode 제어</li>
@@ -1199,7 +1208,7 @@ Connected: true | Project: MyGame | Unity: 6000.0.25f1
                     <li class="disabled">asset-config — 에셋 관리</li>
                     <li class="disabled">exec --check — dry-run</li>
                 </ul>
-                <a href="https://github.com/NotNull92/unity-agent-cli/releases" class="pricing-cta" target="_blank">GitHub에서 다운로드</a>
+                <a href="https://github.com/NotNull92/hera-agent/releases" class="pricing-cta" target="_blank">GitHub에서 다운로드</a>
             </div>
             <div class="pricing-card featured">
                 <div class="pricing-name">Indie</div>
@@ -1207,7 +1216,7 @@ Connected: true | Project: MyGame | Unity: 6000.0.25f1
                 <div class="pricing-price">$9<span>/월</span></div>
                 <div class="pricing-period">Patreon 구독</div>
                 <ul class="pricing-features">
-                    <li>free의 모든 기능</li>
+                    <li>Lite의 모든 기능</li>
                     <li>profiler — 성능 분석</li>
                     <li>batch — 다중 명령</li>
                     <li>introspection — 리플렉션</li>
@@ -1248,7 +1257,7 @@ Connected: true | Project: MyGame | Unity: 6000.0.25f1
                     <span class="faq-icon">+</span>
                 </button>
                 <div class="faq-answer">
-                    <p>free 버전은 Unity 2021.3 LTS 이상을 지원합니다. Pro 버전의 Connector는 Unity 6 (6000.0+)가 필요하며, Code Generation Target 기능으로 Unity 2021+와 Unity 6+ 각각에 최적화된 코드 힌트를 제공합니다.</p>
+                    <p>Lite 버전은 Unity 2021.3 LTS 이상을 지원합니다. Pro 버전의 Connector는 Unity 6 (6000.0+)가 필요하며, Code Generation Target 기능으로 Unity 2021+와 Unity 6+ 각각에 최적화된 코드 힌트를 제공합니다.</p>
                 </div>
             </div>
             <div class="faq-item">
@@ -1304,7 +1313,7 @@ Connected: true | Project: MyGame | Unity: 6000.0.25f1
         <h2>지금 <em>시작하세요</em></h2>
         <p>5분이면 충분합니다. 하나의 바이너리로 Unity를 새롭게 경험하세요.</p>
         <div class="hero-cta-group">
-            <a href="https://github.com/NotNull92/unity-agent-cli/releases" class="btn-primary" target="_blank">
+                <a href="https://github.com/NotNull92/hera-agent/releases" class="btn-primary" target="_blank">
                 ↓ Lite 다운로드
             </a>
             <a href="https://www.patreon.com/c/IndieAlchemist92" class="btn-secondary" target="_blank">
@@ -1318,7 +1327,7 @@ Connected: true | Project: MyGame | Unity: 6000.0.25f1
         <div class="footer-content">
             <div class="footer-logo">Hera Agent</div>
             <div class="footer-links">
-                <a href="https://github.com/NotNull92/unity-agent-cli" target="_blank">GitHub</a>
+                <a href="https://github.com/NotNull92/hera-agent" target="_blank">GitHub</a>
                 <a href="https://www.patreon.com/c/IndieAlchemist92" target="_blank">Patreon</a>
                 <a href="https://youtube.com/@indiealchemist" target="_blank">YouTube</a>
                 <a href="https://discord.gg/hera-agent" target="_blank">Discord</a>
