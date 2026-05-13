@@ -243,6 +243,21 @@
             line-height: 1.7;
         }
 
+        /* Korean + English mixed body text — proper wrapping */
+        .hero-subtitle,
+        .section-header p,
+        .problem-card p,
+        .feature-card p,
+        .faq-answer p,
+        .pricing-desc,
+        .features-tier-desc,
+        .cta-section p,
+        .solution-item p,
+        .diagram-box p {
+            word-break: keep-all;
+            overflow-wrap: anywhere;
+        }
+
         .hero-cta-group {
             display: flex;
             gap: 1rem;
