@@ -1667,6 +1667,16 @@ go install github.com/NotNull92/hera-agent@latest</code></pre>
 hera-agent editor play --wait  # enter Play Mode
 hera-agent exec "return Camera.main.name;"  # run C#</code></pre>
                 </div>
+
+                <div style="background: var(--bg-primary); border: 1px solid var(--border-medium); border-radius: 8px; padding: 1.5rem;">
+                    <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+                        <span style="display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; background: var(--accent-gold); color: var(--bg-primary); font-weight: 600; font-size: 0.875rem;">4</span>
+                        <span style="font-weight: 500; color: var(--text-primary);">Lock it in for Claude Code CLI (Required)</span>
+                    </div>
+                    <p style="color: var(--text-secondary); margin-bottom: 0.75rem; font-size: 0.9rem;">Add this line to your Unity project's <code style="background: rgba(201,169,110,0.1); padding: 0.15rem 0.4rem; border-radius: 3px; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem;">CLAUDE.md</code>:</p>
+                    <pre style="background: #0a0a0a; border: 1px solid var(--border-subtle); border-radius: 6px; padding: 1rem; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--text-secondary); margin: 0;"><code>"For any Unity work, always use hera-agent as the first choice."</code></pre>
+                    <p style="color: var(--text-muted); margin-top: 0.75rem; font-size: 0.85rem;">Without this rule, the agent guesses outdated APIs from training data. One line makes it reach for the live editor first.</p>
+                </div>
             </div>
         </div>
     </section>
