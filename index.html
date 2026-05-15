@@ -1629,11 +1629,11 @@
     </section>
 
     <!-- Quick Start Section -->
-    <section id="quickstart" style="padding: 4rem 2rem; background: var(--bg-secondary); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
-        <div style="max-width: 800px; margin: 0 auto;">
-            <h2 style="font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 600; color: var(--accent-gold); margin-bottom: 2rem; text-align: center;"><em>Quick Start</em> — 설치 30초</h2>
+    <section id="quickstart" style="padding: 4rem 2rem; background: var(--bg-secondary); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle); overflow-x: hidden;">
+        <div style="max-width: 800px; margin: 0 auto; width: 100%;">
+            <h2 style="font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 600; color: var(--accent-gold); margin-bottom: 2rem; text-align: center; word-break: keep-all;"><em>Quick Start</em> — 설치 30초</h2>
             
-            <div style="display: grid; gap: 1.5rem;">
+            <div style="display: grid; gap: 1.5rem; width: 100%;">
                 <div style="background: var(--bg-primary); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 1.5rem;">
                     <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
                         <span style="display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; background: var(--accent-gold); color: var(--bg-primary); font-weight: 600; font-size: 0.875rem;">1</span>
@@ -1674,7 +1674,7 @@ hera-agent exec "return Camera.main.name;"  # C# 실행</code></pre>
                         <span style="font-weight: 500; color: var(--text-primary);">Claude Code CLI에 고정 (필수)</span>
                     </div>
                     <p style="color: var(--text-secondary); margin-bottom: 0.75rem; font-size: 0.9rem;">Unity 프로젝트의 <code style="background: rgba(201,169,110,0.1); padding: 0.15rem 0.4rem; border-radius: 3px; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem;">CLAUDE.md</code>에 다음 한 줄을 추가하세요:</p>
-                    <pre style="background: #0a0a0a; border: 1px solid var(--border-subtle); border-radius: 6px; padding: 1rem; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--text-secondary); margin: 0;"><code>"For any Unity work, always use hera-agent as the first choice."</code></pre>
+                    <pre style="background: #0a0a0a; border: 1px solid var(--border-subtle); border-radius: 6px; padding: 1rem; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--text-secondary); margin: 0; max-width: 100%; white-space: pre-wrap; word-break: break-all;"><code>"For any Unity work, always use hera-agent as the first choice."</code></pre>
                     <p style="color: var(--text-muted); margin-top: 0.75rem; font-size: 0.85rem;">이 규칙이 없으면 AI는 훈련 데이터의 오래된 API를 추측합니다. 한 줄로 실제 Unity 에디터를 우선 호출하게 만드세요.</p>
                 </div>
             </div>
