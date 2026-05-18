@@ -1836,10 +1836,10 @@ hera-agent exec "return Camera.main.name;"  # C# 실행</code></pre>
             </div>
             <div class="feature-card">
                 <span class="feature-tag">Lite</span>
-                <h3>screenshot · menu · scene · reserialize</h3>
-                <p>뷰 캡처, 메뉴 항목 실행(<code>File/Quit</code> 차단), 씬 로드/저장, 에셋 강제 재직렬화까지 한 바이너리에서.</p>
+                <h3>screenshot · menu · scene · reserialize · doctor · update · uninstall</h3>
+                <p>뷰 캡처, 메뉴 항목 실행(<code>File/Quit</code> 차단), 씬 로드/저장, 에셋 강제 재직렬화, 자가 진단, 셀프 업데이트, 완전 제거까지 한 바이너리에서.</p>
                 <div class="feature-code">
-                    <span class="command">hera-agent screenshot --view game --width 3840 --height 2160</span>
+                    <span class="command">hera-agent doctor && hera-agent update</span>
                 </div>
             </div>
         </div>
@@ -1985,8 +1985,8 @@ Connected: true | Project: MyGame | Unity: 6000.0.25f1
                         </tr>
                         <tr style="border-bottom: 1px solid var(--border-subtle);">
                             <td style="padding: 0.5rem 0; color: var(--text-primary);">Lite 엔진</td>
-                            <td style="padding: 0.5rem 0; text-align: right; color: var(--text-secondary); font-family: 'JetBrains Mono', monospace;">~800</td>
-                            <td style="padding: 0.5rem 0; text-align: right; color: var(--text-secondary); font-family: 'JetBrains Mono', monospace;">~2,300</td>
+                            <td style="padding: 0.5rem 0; text-align: right; color: var(--text-secondary); font-family: 'JetBrains Mono', monospace;">~2,000</td>
+                            <td style="padding: 0.5rem 0; text-align: right; color: var(--text-secondary); font-family: 'JetBrains Mono', monospace;">~3,900</td>
                         </tr>
                         <tr>
                             <td style="padding: 0.5rem 0; color: var(--text-primary);">Pro 엔진</td>
@@ -1994,7 +1994,7 @@ Connected: true | Project: MyGame | Unity: 6000.0.25f1
                             <td style="padding: 0.5rem 0; text-align: right; color: var(--accent-gold); font-family: 'JetBrains Mono', monospace;">~5,100</td>
                         </tr>
                     </table>
-                    <p style="color: var(--text-muted); font-size: 0.8rem; margin: 1rem 0 0;">Lite엔 테스트/TUI/플랫폼 어댑터가 ~2,200줄 더. 그래도 Unity와 직접 통신하는 엔진은 가볍게 유지.</p>
+                    <p style="color: var(--text-muted); font-size: 0.8rem; margin: 1rem 0 0;">Lite엔 테스트/TUI/플랫폼 어댑터가 ~1,400줄 더. 그래도 Unity와 직접 통신하는 엔진은 가볍게 유지.</p>
                 </div>
 
                 <div style="background: var(--bg-primary); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 1.5rem;">
@@ -2002,7 +2002,7 @@ Connected: true | Project: MyGame | Unity: 6000.0.25f1
                     <ul style="list-style: none; padding: 0; margin: 0; font-size: 0.85rem;">
                         <li style="padding: 0.4rem 0; border-bottom: 1px solid var(--border-subtle);"><code style="color: var(--accent-gold); font-family: 'JetBrains Mono', monospace;">UNITY_AGENT_PORT</code> — 자동 발견 무시</li>
                         <li style="padding: 0.4rem 0; border-bottom: 1px solid var(--border-subtle);"><code style="color: var(--accent-gold); font-family: 'JetBrains Mono', monospace;">UNITY_AGENT_PROJECT</code> — 경로로 인스턴스 선택</li>
-                        <li style="padding: 0.4rem 0; border-bottom: 1px solid var(--border-subtle);"><code style="color: var(--accent-gold); font-family: 'JetBrains Mono', monospace;">UNITY_AGENT_TIMEOUT_MS</code> — HTTP 타임아웃 (기본 120s)</li>
+                        <li style="padding: 0.4rem 0; border-bottom: 1px solid var(--border-subtle);"><code style="color: var(--accent-gold); font-family: 'JetBrains Mono', monospace;">UNITY_AGENT_TIMEOUT_MS</code> — HTTP 타임아웃 (기본 60s)</li>
                         <li style="padding: 0.4rem 0;"><code style="color: var(--accent-gold); font-family: 'JetBrains Mono', monospace;">GITHUB_TOKEN</code> — Pro 셀프 업데이트 인증</li>
                     </ul>
                     <p style="color: var(--text-muted); font-size: 0.8rem; margin: 1rem 0 0;">CLI 플래그로도 가능: <code style="font-family: 'JetBrains Mono', monospace;">--port</code>, <code style="font-family: 'JetBrains Mono', monospace;">--project</code>, <code style="font-family: 'JetBrains Mono', monospace;">--timeout</code>.</p>
@@ -2025,20 +2025,20 @@ Connected: true | Project: MyGame | Unity: 6000.0.25f1
         </div>
 
         <div class="benchmark-stats">
-            <div class="bench-stat">
-                <div class="bench-stat-label">Lite v0.0.1 · default</div>
+                <div class="bench-stat">
+                <div class="bench-stat-label">Lite v0.0.13 · default</div>
                 <div class="bench-stat-value">25,728</div>
                 <div class="bench-stat-unit">토큰 / 호출 75회</div>
                 <div class="bench-stat-note">기준값. introspection은 <code>exec</code> + 리플렉션으로 우회.</div>
             </div>
             <div class="bench-stat highlighted">
-                <div class="bench-stat-label">Pro v0.0.32 · <em>compact</em></div>
+                <div class="bench-stat-label">Pro v0.0.34 · <em>compact</em></div>
                 <div class="bench-stat-value">31,708</div>
                 <div class="bench-stat-unit">토큰 / 호출 75회</div>
                 <div class="bench-stat-note">Lite의 1.23배. introspection, Unity Pitfalls, JSON 모두 포함.</div>
             </div>
             <div class="bench-stat">
-                <div class="bench-stat-label">Pro v0.0.32 · default</div>
+                <div class="bench-stat-label">Pro v0.0.34 · default</div>
                 <div class="bench-stat-value">58,282</div>
                 <div class="bench-stat-unit">토큰 / 호출 75회</div>
                 <div class="bench-stat-note">사람이 직접 보는 모드. TUI 패널과 자세한 출력 포함.</div>
@@ -2121,12 +2121,16 @@ Connected: true | Project: MyGame | Unity: 6000.0.25f1
                 <ul class="pricing-features">
                     <li>exec — 런타임 C# 실행</li>
                     <li>editor — Play Mode 제어</li>
+                    <li>scene — 씬 정보·로드·저장·목록·닫기</li>
                     <li>test — EditMode/PlayMode</li>
                     <li>console — 로그 골라보기</li>
                     <li>menu — 메뉴 아이템 실행</li>
                     <li>screenshot — 화면 캡처</li>
                     <li>reserialize — 강제 다시 저장</li>
                     <li>profiler — 성능 분석</li>
+                    <li>doctor — 자가 진단</li>
+                    <li>update — 셀프 업데이트</li>
+                    <li>uninstall — 완전 제거</li>
                     <li>내 도구 ([HeraTool])</li>
                     <li class="disabled">asset-config — 에셋 플러그인 관리</li>
                     <li class="disabled">batch — 여러 명령 한 번에</li>
