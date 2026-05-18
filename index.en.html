@@ -1836,8 +1836,8 @@ hera-agent exec "return Camera.main.name;"  # run C#</code></pre>
             </div>
             <div class="feature-card">
                 <span class="feature-tag">Lite</span>
-                <h3>screenshot · menu · scene · reserialize</h3>
-                <p>View capture, run menu items (<code>File/Quit</code> blocked), scene load/save, force asset re-serialization — all in one binary.</p>
+                <h3>screenshot · menu · scene · reserialize · doctor · update · uninstall</h3>
+                <p>View capture, run menu items (<code>File/Quit</code> blocked), scene load/save, force asset re-serialization, health check, self-update, clean uninstall — all in one binary.</p>
                 <div class="feature-code">
                     <span class="command">hera-agent screenshot --view game --width 3840 --height 2160</span>
                 </div>
@@ -1985,8 +1985,8 @@ Connected: true | Project: MyGame | Unity: 6000.0.25f1
                         </tr>
                         <tr style="border-bottom: 1px solid var(--border-subtle);">
                             <td style="padding: 0.5rem 0; color: var(--text-primary);">Lite engine</td>
-                            <td style="padding: 0.5rem 0; text-align: right; color: var(--text-secondary); font-family: 'JetBrains Mono', monospace;">~800</td>
-                            <td style="padding: 0.5rem 0; text-align: right; color: var(--text-secondary); font-family: 'JetBrains Mono', monospace;">~2,300</td>
+                            <td style="padding: 0.5rem 0; text-align: right; color: var(--text-secondary); font-family: 'JetBrains Mono', monospace;">~2,000</td>
+                            <td style="padding: 0.5rem 0; text-align: right; color: var(--text-secondary); font-family: 'JetBrains Mono', monospace;">~3,900</td>
                         </tr>
                         <tr>
                             <td style="padding: 0.5rem 0; color: var(--text-primary);">Pro engine</td>
@@ -1994,7 +1994,7 @@ Connected: true | Project: MyGame | Unity: 6000.0.25f1
                             <td style="padding: 0.5rem 0; text-align: right; color: var(--accent-gold); font-family: 'JetBrains Mono', monospace;">~5,100</td>
                         </tr>
                     </table>
-                    <p style="color: var(--text-muted); font-size: 0.8rem; margin: 1rem 0 0;">Lite ships ~2,200 more lines for tests / TUI / platform adapters. The engine that talks to Unity stays small.</p>
+                    <p style="color: var(--text-muted); font-size: 0.8rem; margin: 1rem 0 0;">Lite ships ~1,400 more lines for tests / TUI / platform adapters. The engine that talks to Unity stays small.</p>
                 </div>
 
                 <div style="background: var(--bg-primary); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 1.5rem;">
@@ -2002,7 +2002,7 @@ Connected: true | Project: MyGame | Unity: 6000.0.25f1
                     <ul style="list-style: none; padding: 0; margin: 0; font-size: 0.85rem;">
                         <li style="padding: 0.4rem 0; border-bottom: 1px solid var(--border-subtle);"><code style="color: var(--accent-gold); font-family: 'JetBrains Mono', monospace;">UNITY_AGENT_PORT</code> — bypass auto-discovery</li>
                         <li style="padding: 0.4rem 0; border-bottom: 1px solid var(--border-subtle);"><code style="color: var(--accent-gold); font-family: 'JetBrains Mono', monospace;">UNITY_AGENT_PROJECT</code> — pick instance by path</li>
-                        <li style="padding: 0.4rem 0; border-bottom: 1px solid var(--border-subtle);"><code style="color: var(--accent-gold); font-family: 'JetBrains Mono', monospace;">UNITY_AGENT_TIMEOUT_MS</code> — HTTP timeout (default 120s)</li>
+                        <li style="padding: 0.4rem 0; border-bottom: 1px solid var(--border-subtle);"><code style="color: var(--accent-gold); font-family: 'JetBrains Mono', monospace;">UNITY_AGENT_TIMEOUT_MS</code> — HTTP timeout (default 60s)</li>
                         <li style="padding: 0.4rem 0;"><code style="color: var(--accent-gold); font-family: 'JetBrains Mono', monospace;">GITHUB_TOKEN</code> — Pro self-update auth</li>
                     </ul>
                     <p style="color: var(--text-muted); font-size: 0.8rem; margin: 1rem 0 0;">Also as CLI flags: <code style="font-family: 'JetBrains Mono', monospace;">--port</code>, <code style="font-family: 'JetBrains Mono', monospace;">--project</code>, <code style="font-family: 'JetBrains Mono', monospace;">--timeout</code>.</p>
@@ -2026,19 +2026,19 @@ Connected: true | Project: MyGame | Unity: 6000.0.25f1
 
         <div class="benchmark-stats">
             <div class="bench-stat">
-                <div class="bench-stat-label">Lite v0.0.1 · default</div>
+                <div class="bench-stat-label">Lite v0.0.13 · default</div>
                 <div class="bench-stat-value">25,728</div>
                 <div class="bench-stat-unit">tokens / 75 calls</div>
                 <div class="bench-stat-note">Baseline. introspection routed through <code>exec</code> + reflection.</div>
             </div>
             <div class="bench-stat highlighted">
-                <div class="bench-stat-label">Pro v0.0.32 · <em>compact</em></div>
+                <div class="bench-stat-label">Pro v0.0.34 · <em>compact</em></div>
                 <div class="bench-stat-value">31,708</div>
                 <div class="bench-stat-unit">tokens / 75 calls</div>
                 <div class="bench-stat-note">1.23× the Lite total. Includes introspection, Unity Pitfalls, JSON.</div>
             </div>
             <div class="bench-stat">
-                <div class="bench-stat-label">Pro v0.0.32 · default</div>
+                <div class="bench-stat-label">Pro v0.0.34 · default</div>
                 <div class="bench-stat-value">58,282</div>
                 <div class="bench-stat-unit">tokens / 75 calls</div>
                 <div class="bench-stat-note">Human-facing mode. TUI panel and verbose output.</div>
