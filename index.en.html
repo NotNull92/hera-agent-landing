@@ -1673,6 +1673,19 @@ irm https://raw.githubusercontent.com/NotNull92/hera-agent/main/install.ps1 | ie
 
 # Go install (any platform)
 go install github.com/NotNull92/hera-agent@latest</code></pre>
+                    <details style="margin-top: 0.75rem; color: var(--text-secondary); font-size: 0.85rem;">
+                        <summary style="cursor: pointer; color: var(--accent-gold);">Pro users — self-installer</summary>
+                        <p style="margin: 0.75rem 0 0.5rem; color: var(--text-muted);">After Patreon unlock, run the downloaded binary once — it installs itself and registers PATH.</p>
+                        <pre style="background: #0a0a0a; border: 1px solid var(--border-subtle); border-radius: 6px; padding: 0.9rem; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--text-secondary); margin: 0;"><code># Windows (PowerShell)
+.\hera-agent-pro-windows-amd64.exe install
+
+# macOS / Linux
+chmod +x ./hera-agent-pro-darwin-arm64
+./hera-agent-pro-darwin-arm64 install
+
+# restart shell, then
+hera-agent-pro --version</code></pre>
+                    </details>
                 </div>
                 
                 <div style="background: var(--bg-primary); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 1.5rem;">
@@ -1682,6 +1695,11 @@ go install github.com/NotNull92/hera-agent@latest</code></pre>
                     </div>
                     <p style="color: var(--text-secondary); margin-bottom: 0.75rem; font-size: 0.9rem;">Package Manager → Add package from git URL:</p>
                     <pre style="background: #0a0a0a; border: 1px solid var(--border-subtle); border-radius: 6px; padding: 1rem; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--text-secondary); margin: 0;"><code>https://github.com/NotNull92/hera-agent.git?path=AgentConnector</code></pre>
+                    <details style="margin-top: 0.75rem; color: var(--text-secondary); font-size: 0.85rem;">
+                        <summary style="cursor: pointer; color: var(--accent-gold);">Pro users — separate UPM URL</summary>
+                        <p style="margin: 0.75rem 0 0.5rem; color: var(--text-muted);">The Pro repo is private. Access requires Patreon authentication.</p>
+                        <pre style="background: #0a0a0a; border: 1px solid var(--border-subtle); border-radius: 6px; padding: 0.9rem; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--text-secondary); margin: 0;"><code>https://github.com/NotNull92/hera-agent-pro.git?path=AgentConnector</code></pre>
+                    </details>
                 </div>
                 
                 <div style="background: var(--bg-primary); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 1.5rem;">
@@ -1748,7 +1766,7 @@ hera-agent exec "return Camera.main.name;"  # run C#</code></pre>
             <div class="solution-item">
                 <div class="solution-number">02</div>
                 <h3>Direct HTTP</h3>
-                <p>Connects straight to Unity on localhost:8090. No middleware server.</p>
+                <p>Connects straight to Unity on localhost:8090+. Falls back to 8091, 8092… if the port is taken. No middleware server.</p>
             </div>
             <div class="solution-item">
                 <div class="solution-number">03</div>
@@ -1800,6 +1818,30 @@ hera-agent exec "return Camera.main.name;"  # run C#</code></pre>
                     <span class="command">hera-agent console --type error</span>
                 </div>
             </div>
+            <div class="feature-card">
+                <span class="feature-tag">Lite</span>
+                <h3>test — EditMode / PlayMode</h3>
+                <p>Run the test runner from the terminal. PlayMode results poll past the domain reload via a filesystem bus.</p>
+                <div class="feature-code">
+                    <span class="command">hera-agent test --mode PlayMode</span>
+                </div>
+            </div>
+            <div class="feature-card">
+                <span class="feature-tag">Lite</span>
+                <h3>profiler — only the slow parts</h3>
+                <p>Profiler hierarchy without GUI clicks. Sort, depth, threshold — pull hot spots directly.</p>
+                <div class="feature-code">
+                    <span class="command">hera-agent profiler hierarchy --depth 3 --sort self</span>
+                </div>
+            </div>
+            <div class="feature-card">
+                <span class="feature-tag">Lite</span>
+                <h3>screenshot · menu · scene · reserialize</h3>
+                <p>View capture, run menu items (<code>File/Quit</code> blocked), scene load/save, force asset re-serialization — all in one binary.</p>
+                <div class="feature-code">
+                    <span class="command">hera-agent screenshot --view game --width 3840 --height 2160</span>
+                </div>
+            </div>
         </div>
 
         <div class="features-tier pro">
@@ -1832,6 +1874,38 @@ hera-agent exec "return Camera.main.name;"  # run C#</code></pre>
                     <span class="command">hera-agent-pro batch --file deploy.json</span>
                 </div>
             </div>
+            <div class="feature-card">
+                <span class="feature-tag pro">Pro</span>
+                <h3>pitfalls — describe_type with traps</h3>
+                <p>Signatures arrive with Unity 6 pitfalls + Manual links. Covers Editor API, MonoBehaviour lifecycle, and uGUI (Canvas/RectTransform/EventSystem/LayoutGroup/ScrollRect/Mask/CanvasGroup).</p>
+                <div class="feature-code">
+                    <span class="command">hera-agent-pro describe_type AssetDatabase --members methods</span>
+                </div>
+            </div>
+            <div class="feature-card">
+                <span class="feature-tag pro">Pro</span>
+                <h3>list_assemblies / find_method</h3>
+                <p>Search assemblies and methods loaded in the live project via reflection — not LLM training-cutoff guesses.</p>
+                <div class="feature-code">
+                    <span class="command">hera-agent-pro find_method Refresh --namespace UnityEditor</span>
+                </div>
+            </div>
+            <div class="feature-card">
+                <span class="feature-tag pro">Pro</span>
+                <h3>asset-config — asset plugin management</h3>
+                <p>Auto-detect installed assets, toggle on/off, emit JSON for AI agents. Interactive checkbox UI included.</p>
+                <div class="feature-code">
+                    <span class="command">hera-agent-pro asset-config --json</span>
+                </div>
+            </div>
+            <div class="feature-card">
+                <span class="feature-tag pro">Pro</span>
+                <h3>Auto multi-instance discovery</h3>
+                <p>Open many Unity editors — Hera picks one by CWD → project path → port → most recent heartbeat. Override with <code>--port</code>, <code>--project</code>, or <code>UNITY_AGENT_*</code> env vars.</p>
+                <div class="feature-code">
+                    <span class="command">UNITY_AGENT_PROJECT=~/Projects/MyGame hera-agent-pro exec ...</span>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -1850,7 +1924,7 @@ hera-agent exec "return Camera.main.name;"  # run C#</code></pre>
                 <div class="diagram-arrow">→</div>
                 <div class="diagram-box">
                     <h4>HTTP POST</h4>
-                    <p>localhost:8090</p>
+                    <p>localhost:8090+ (auto fallback)</p>
                 </div>
                 <div class="diagram-arrow">→</div>
                 <div class="diagram-box">
@@ -1889,6 +1963,57 @@ Connected: true | Project: MyGame | Unity: 6000.0.25f1
 
 <span class="comment">// Pro: build, test, verify in one shot (CI/CD)</span>
 <span class="command">hera-agent-pro batch --file deploy-commands.json</span></pre>
+        </div>
+    </section>
+
+    <!-- Tech Detail Section -->
+    <section id="tech-detail" style="padding: 4rem 2rem; background: var(--bg-secondary); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+        <div style="max-width: 1100px; margin: 0 auto;">
+            <div class="section-header">
+                <h2><em>Under the Hood</em></h2>
+                <p>Code size, environment variables, domain-reload safety</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
+                <div style="background: var(--bg-primary); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 1.5rem;">
+                    <h3 style="font-family: 'Cormorant Garamond', serif; color: var(--accent-gold); font-size: 1.4rem; margin: 0 0 1rem;">Code size</h3>
+                    <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
+                        <tr style="border-bottom: 1px solid var(--border-subtle);">
+                            <td style="padding: 0.5rem 0; color: var(--text-muted);"></td>
+                            <td style="padding: 0.5rem 0; color: var(--text-muted); text-align: right;">Go</td>
+                            <td style="padding: 0.5rem 0; color: var(--text-muted); text-align: right;">C#</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-subtle);">
+                            <td style="padding: 0.5rem 0; color: var(--text-primary);">Lite engine</td>
+                            <td style="padding: 0.5rem 0; text-align: right; color: var(--text-secondary); font-family: 'JetBrains Mono', monospace;">~800</td>
+                            <td style="padding: 0.5rem 0; text-align: right; color: var(--text-secondary); font-family: 'JetBrains Mono', monospace;">~2,300</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0.5rem 0; color: var(--text-primary);">Pro engine</td>
+                            <td style="padding: 0.5rem 0; text-align: right; color: var(--accent-gold); font-family: 'JetBrains Mono', monospace;">~3,400</td>
+                            <td style="padding: 0.5rem 0; text-align: right; color: var(--accent-gold); font-family: 'JetBrains Mono', monospace;">~5,100</td>
+                        </tr>
+                    </table>
+                    <p style="color: var(--text-muted); font-size: 0.8rem; margin: 1rem 0 0;">Lite ships ~2,200 more lines for tests / TUI / platform adapters. The engine that talks to Unity stays small.</p>
+                </div>
+
+                <div style="background: var(--bg-primary); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 1.5rem;">
+                    <h3 style="font-family: 'Cormorant Garamond', serif; color: var(--accent-gold); font-size: 1.4rem; margin: 0 0 1rem;">Env variables</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0; font-size: 0.85rem;">
+                        <li style="padding: 0.4rem 0; border-bottom: 1px solid var(--border-subtle);"><code style="color: var(--accent-gold); font-family: 'JetBrains Mono', monospace;">UNITY_AGENT_PORT</code> — bypass auto-discovery</li>
+                        <li style="padding: 0.4rem 0; border-bottom: 1px solid var(--border-subtle);"><code style="color: var(--accent-gold); font-family: 'JetBrains Mono', monospace;">UNITY_AGENT_PROJECT</code> — pick instance by path</li>
+                        <li style="padding: 0.4rem 0; border-bottom: 1px solid var(--border-subtle);"><code style="color: var(--accent-gold); font-family: 'JetBrains Mono', monospace;">UNITY_AGENT_TIMEOUT_MS</code> — HTTP timeout (default 120s)</li>
+                        <li style="padding: 0.4rem 0;"><code style="color: var(--accent-gold); font-family: 'JetBrains Mono', monospace;">GITHUB_TOKEN</code> — Pro self-update auth</li>
+                    </ul>
+                    <p style="color: var(--text-muted); font-size: 0.8rem; margin: 1rem 0 0;">Also as CLI flags: <code style="font-family: 'JetBrains Mono', monospace;">--port</code>, <code style="font-family: 'JetBrains Mono', monospace;">--project</code>, <code style="font-family: 'JetBrains Mono', monospace;">--timeout</code>.</p>
+                </div>
+
+                <div style="background: var(--bg-primary); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 1.5rem;">
+                    <h3 style="font-family: 'Cormorant Garamond', serif; color: var(--accent-gold); font-size: 1.4rem; margin: 0 0 1rem;">Domain Reload mechanism</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; margin: 0 0 0.75rem;">The HTTP server dies briefly when scripts recompile. Hera holds <code style="font-family: 'JetBrains Mono', monospace; color: var(--accent-gold);">~/.hera-agent*/instances/</code> heartbeat files via atomic writes, and the CLI re-discovers on every call.</p>
+                    <p style="color: var(--text-muted); font-size: 0.85rem; margin: 0;">Pro pipes PlayMode test results through <code style="font-family: 'JetBrains Mono', monospace;">status/test-results-{port}.json</code> on disk, so polling survives reload. The <code style="font-family: 'JetBrains Mono', monospace;">--compile</code> flag uses a 3s grace window to avoid false "ready" detection.</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -2002,8 +2127,8 @@ Connected: true | Project: MyGame | Unity: 6000.0.25f1
                     <li>screenshot — capture</li>
                     <li>reserialize — force re-save</li>
                     <li>profiler — performance</li>
-                    <li>asset-config — assets</li>
                     <li>your own tools ([HeraTool])</li>
+                    <li class="disabled">asset-config — asset plugin management</li>
                     <li class="disabled">batch — many commands at once</li>
                     <li class="disabled">introspection — the live API</li>
                     <li class="disabled">exec --check — syntax before run</li>
@@ -2022,7 +2147,8 @@ Connected: true | Project: MyGame | Unity: 6000.0.25f1
                     <li>exec --check — one fewer retry</li>
                     <li>introspection — replace LLM guesses</li>
                     <li>batch — many round-trips become one</li>
-                    <li>Unity Pitfalls catalog (50+ items)</li>
+                    <li>asset-config — toggle asset plugins, JSON output for AI agents</li>
+                    <li>Unity Pitfalls catalog — Editor API · MonoBehaviour lifecycle · uGUI</li>
                     <li>Priority support on Discord</li>
                     <li>Patreon-only private content</li>
                 </ul>

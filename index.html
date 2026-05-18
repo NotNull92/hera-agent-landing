@@ -1673,6 +1673,19 @@ irm https://raw.githubusercontent.com/NotNull92/hera-agent/main/install.ps1 | ie
 
 # Go install (모든 플랫폼)
 go install github.com/NotNull92/hera-agent@latest</code></pre>
+                    <details style="margin-top: 0.75rem; color: var(--text-secondary); font-size: 0.85rem;">
+                        <summary style="cursor: pointer; color: var(--accent-gold);">Pro 사용자 — 자동 인스톨러</summary>
+                        <p style="margin: 0.75rem 0 0.5rem; color: var(--text-muted);">Patreon 잠금해제 후 Releases에서 받은 바이너리를 한 번 실행하면 PATH까지 자동 등록됩니다.</p>
+                        <pre style="background: #0a0a0a; border: 1px solid var(--border-subtle); border-radius: 6px; padding: 0.9rem; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--text-secondary); margin: 0;"><code># Windows (PowerShell)
+.\hera-agent-pro-windows-amd64.exe install
+
+# macOS / Linux
+chmod +x ./hera-agent-pro-darwin-arm64
+./hera-agent-pro-darwin-arm64 install
+
+# 셸 재시작 후
+hera-agent-pro --version</code></pre>
+                    </details>
                 </div>
                 
                 <div style="background: var(--bg-primary); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 1.5rem;">
@@ -1682,6 +1695,11 @@ go install github.com/NotNull92/hera-agent@latest</code></pre>
                     </div>
                     <p style="color: var(--text-secondary); margin-bottom: 0.75rem; font-size: 0.9rem;">Package Manager → Add package from git URL:</p>
                     <pre style="background: #0a0a0a; border: 1px solid var(--border-subtle); border-radius: 6px; padding: 1rem; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--text-secondary); margin: 0;"><code>https://github.com/NotNull92/hera-agent.git?path=AgentConnector</code></pre>
+                    <details style="margin-top: 0.75rem; color: var(--text-secondary); font-size: 0.85rem;">
+                        <summary style="cursor: pointer; color: var(--accent-gold);">Pro 사용자 — 별도 UPM URL</summary>
+                        <p style="margin: 0.75rem 0 0.5rem; color: var(--text-muted);">Pro 저장소는 비공개입니다. Patreon 인증 후 접근 가능.</p>
+                        <pre style="background: #0a0a0a; border: 1px solid var(--border-subtle); border-radius: 6px; padding: 0.9rem; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--text-secondary); margin: 0;"><code>https://github.com/NotNull92/hera-agent-pro.git?path=AgentConnector</code></pre>
+                    </details>
                 </div>
                 
                 <div style="background: var(--bg-primary); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 1.5rem;">
@@ -1748,7 +1766,7 @@ hera-agent exec "return Camera.main.name;"  # C# 실행</code></pre>
             <div class="solution-item">
                 <div class="solution-number">02</div>
                 <h3>직접 HTTP</h3>
-                <p>localhost:8090으로 Unity에 바로 연결. 중간 서버 없음.</p>
+                <p>localhost:8090+ 으로 Unity에 바로 연결. 포트가 점유되면 8091, 8092… 자동 폴백. 중간 서버 없음.</p>
             </div>
             <div class="solution-item">
                 <div class="solution-number">03</div>
@@ -1800,6 +1818,30 @@ hera-agent exec "return Camera.main.name;"  # C# 실행</code></pre>
                     <span class="command">hera-agent console --type error</span>
                 </div>
             </div>
+            <div class="feature-card">
+                <span class="feature-tag">Lite</span>
+                <h3>test — EditMode / PlayMode</h3>
+                <p>테스트를 터미널에서 직접 돌리고 결과를 받습니다. PlayMode는 도메인 리로드 너머까지 폴링.</p>
+                <div class="feature-code">
+                    <span class="command">hera-agent test --mode PlayMode</span>
+                </div>
+            </div>
+            <div class="feature-card">
+                <span class="feature-tag">Lite</span>
+                <h3>profiler — 느린 부분만 뽑기</h3>
+                <p>Profiler 계층을 GUI 클릭 없이 한 줄로. 정렬·깊이·임계값으로 핫스팟만 직접 가져옵니다.</p>
+                <div class="feature-code">
+                    <span class="command">hera-agent profiler hierarchy --depth 3 --sort self</span>
+                </div>
+            </div>
+            <div class="feature-card">
+                <span class="feature-tag">Lite</span>
+                <h3>screenshot · menu · scene · reserialize</h3>
+                <p>뷰 캡처, 메뉴 항목 실행(<code>File/Quit</code> 차단), 씬 로드/저장, 에셋 강제 재직렬화까지 한 바이너리에서.</p>
+                <div class="feature-code">
+                    <span class="command">hera-agent screenshot --view game --width 3840 --height 2160</span>
+                </div>
+            </div>
         </div>
 
         <div class="features-tier pro">
@@ -1832,6 +1874,38 @@ hera-agent exec "return Camera.main.name;"  # C# 실행</code></pre>
                     <span class="command">hera-agent-pro batch --file deploy.json</span>
                 </div>
             </div>
+            <div class="feature-card">
+                <span class="feature-tag pro">Pro</span>
+                <h3>pitfalls — describe_type 함정 노트</h3>
+                <p>시그니처와 함께 Unity 6 함정 + Manual 링크가 함께 옵니다. Editor API · MonoBehaviour 생명주기 · uGUI(Canvas/RectTransform/EventSystem/LayoutGroup/ScrollRect/Mask/CanvasGroup) 커버.</p>
+                <div class="feature-code">
+                    <span class="command">hera-agent-pro describe_type AssetDatabase --members methods</span>
+                </div>
+            </div>
+            <div class="feature-card">
+                <span class="feature-tag pro">Pro</span>
+                <h3>list_assemblies / find_method</h3>
+                <p>지금 이 프로젝트에 실제로 로드된 어셈블리·메서드를 리플렉션으로 직접 검색. LLM 학습 cutoff 짐작이 아니라 라이브 상태.</p>
+                <div class="feature-code">
+                    <span class="command">hera-agent-pro find_method Refresh --namespace UnityEditor</span>
+                </div>
+            </div>
+            <div class="feature-card">
+                <span class="feature-tag pro">Pro</span>
+                <h3>asset-config — 에셋 플러그인 관리</h3>
+                <p>설치된 에셋 자동 감지, on/off, AI 에이전트용 JSON 출력. 인터랙티브 체크박스 UI도 제공.</p>
+                <div class="feature-code">
+                    <span class="command">hera-agent-pro asset-config --json</span>
+                </div>
+            </div>
+            <div class="feature-card">
+                <span class="feature-tag pro">Pro</span>
+                <h3>자동 다중 인스턴스 발견</h3>
+                <p>Unity를 여러 개 열어도 CWD → 프로젝트 경로 → 포트 → 최근 heartbeat 순으로 자동 선택. <code>--port</code>, <code>--project</code>, <code>UNITY_AGENT_*</code> 환경변수로 명시 오버라이드.</p>
+                <div class="feature-code">
+                    <span class="command">UNITY_AGENT_PROJECT=~/Projects/MyGame hera-agent-pro exec ...</span>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -1850,7 +1924,7 @@ hera-agent exec "return Camera.main.name;"  # C# 실행</code></pre>
                 <div class="diagram-arrow">→</div>
                 <div class="diagram-box">
                     <h4>HTTP POST</h4>
-                    <p>localhost:8090</p>
+                    <p>localhost:8090+ (자동 폴백)</p>
                 </div>
                 <div class="diagram-arrow">→</div>
                 <div class="diagram-box">
@@ -1889,6 +1963,57 @@ Connected: true | Project: MyGame | Unity: 6000.0.25f1
 
 <span class="comment">// Pro: 빌드·테스트·확인을 한 번에 (CI/CD)</span>
 <span class="command">hera-agent-pro batch --file deploy-commands.json</span></pre>
+        </div>
+    </section>
+
+    <!-- Tech Detail Section -->
+    <section id="tech-detail" style="padding: 4rem 2rem; background: var(--bg-secondary); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+        <div style="max-width: 1100px; margin: 0 auto;">
+            <div class="section-header">
+                <h2><em>Under the Hood</em></h2>
+                <p>코드 크기, 환경 변수, 도메인 리로드 안전 메커니즘</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
+                <div style="background: var(--bg-primary); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 1.5rem;">
+                    <h3 style="font-family: 'Cormorant Garamond', serif; color: var(--accent-gold); font-size: 1.4rem; margin: 0 0 1rem;">코드 크기</h3>
+                    <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
+                        <tr style="border-bottom: 1px solid var(--border-subtle);">
+                            <td style="padding: 0.5rem 0; color: var(--text-muted);"></td>
+                            <td style="padding: 0.5rem 0; color: var(--text-muted); text-align: right;">Go</td>
+                            <td style="padding: 0.5rem 0; color: var(--text-muted); text-align: right;">C#</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-subtle);">
+                            <td style="padding: 0.5rem 0; color: var(--text-primary);">Lite 엔진</td>
+                            <td style="padding: 0.5rem 0; text-align: right; color: var(--text-secondary); font-family: 'JetBrains Mono', monospace;">~800</td>
+                            <td style="padding: 0.5rem 0; text-align: right; color: var(--text-secondary); font-family: 'JetBrains Mono', monospace;">~2,300</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0.5rem 0; color: var(--text-primary);">Pro 엔진</td>
+                            <td style="padding: 0.5rem 0; text-align: right; color: var(--accent-gold); font-family: 'JetBrains Mono', monospace;">~3,400</td>
+                            <td style="padding: 0.5rem 0; text-align: right; color: var(--accent-gold); font-family: 'JetBrains Mono', monospace;">~5,100</td>
+                        </tr>
+                    </table>
+                    <p style="color: var(--text-muted); font-size: 0.8rem; margin: 1rem 0 0;">Lite엔 테스트/TUI/플랫폼 어댑터가 ~2,200줄 더. 그래도 Unity와 직접 통신하는 엔진은 가볍게 유지.</p>
+                </div>
+
+                <div style="background: var(--bg-primary); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 1.5rem;">
+                    <h3 style="font-family: 'Cormorant Garamond', serif; color: var(--accent-gold); font-size: 1.4rem; margin: 0 0 1rem;">환경 변수</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0; font-size: 0.85rem;">
+                        <li style="padding: 0.4rem 0; border-bottom: 1px solid var(--border-subtle);"><code style="color: var(--accent-gold); font-family: 'JetBrains Mono', monospace;">UNITY_AGENT_PORT</code> — 자동 발견 무시</li>
+                        <li style="padding: 0.4rem 0; border-bottom: 1px solid var(--border-subtle);"><code style="color: var(--accent-gold); font-family: 'JetBrains Mono', monospace;">UNITY_AGENT_PROJECT</code> — 경로로 인스턴스 선택</li>
+                        <li style="padding: 0.4rem 0; border-bottom: 1px solid var(--border-subtle);"><code style="color: var(--accent-gold); font-family: 'JetBrains Mono', monospace;">UNITY_AGENT_TIMEOUT_MS</code> — HTTP 타임아웃 (기본 120s)</li>
+                        <li style="padding: 0.4rem 0;"><code style="color: var(--accent-gold); font-family: 'JetBrains Mono', monospace;">GITHUB_TOKEN</code> — Pro 셀프 업데이트 인증</li>
+                    </ul>
+                    <p style="color: var(--text-muted); font-size: 0.8rem; margin: 1rem 0 0;">CLI 플래그로도 가능: <code style="font-family: 'JetBrains Mono', monospace;">--port</code>, <code style="font-family: 'JetBrains Mono', monospace;">--project</code>, <code style="font-family: 'JetBrains Mono', monospace;">--timeout</code>.</p>
+                </div>
+
+                <div style="background: var(--bg-primary); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 1.5rem;">
+                    <h3 style="font-family: 'Cormorant Garamond', serif; color: var(--accent-gold); font-size: 1.4rem; margin: 0 0 1rem;">Domain Reload 메커니즘</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; margin: 0 0 0.75rem;">스크립트 리컴파일 시 HTTP 서버가 잠시 죽습니다. Hera는 <code style="font-family: 'JetBrains Mono', monospace; color: var(--accent-gold);">~/.hera-agent*/instances/</code> heartbeat 파일을 원자적 쓰기로 유지하고 CLI가 매 호출마다 재탐색.</p>
+                    <p style="color: var(--text-muted); font-size: 0.85rem; margin: 0;">Pro는 PlayMode 테스트 결과를 <code style="font-family: 'JetBrains Mono', monospace;">status/test-results-{port}.json</code>으로 디스크에 흘려보내 도메인 리로드 너머까지 폴링. <code style="font-family: 'JetBrains Mono', monospace;">--compile</code> 플래그는 3초 유예 기간으로 조기 ready 오탐 방지.</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -2002,8 +2127,8 @@ Connected: true | Project: MyGame | Unity: 6000.0.25f1
                     <li>screenshot — 화면 캡처</li>
                     <li>reserialize — 강제 다시 저장</li>
                     <li>profiler — 성능 분석</li>
-                    <li>asset-config — 에셋 관리</li>
                     <li>내 도구 ([HeraTool])</li>
+                    <li class="disabled">asset-config — 에셋 플러그인 관리</li>
                     <li class="disabled">batch — 여러 명령 한 번에</li>
                     <li class="disabled">introspection — 살아있는 API 보기</li>
                     <li class="disabled">exec --check — 실행 전 문법 확인</li>
@@ -2022,7 +2147,8 @@ Connected: true | Project: MyGame | Unity: 6000.0.25f1
                     <li>exec --check — 재시도 한 번 줄이기</li>
                     <li>introspection — LLM 짐작 교체</li>
                     <li>batch — 여러 번 호출이 한 번으로</li>
-                    <li>Unity Pitfalls 모음 (50+ 항목)</li>
+                    <li>asset-config — 에셋 플러그인 on/off, AI 에이전트용 JSON 출력</li>
+                    <li>Unity Pitfalls 모음 — Editor API · MonoBehaviour 생명주기 · uGUI</li>
                     <li>Discord 우선 지원</li>
                     <li>Patreon에서만 보는 비공개 콘텐츠</li>
                 </ul>
