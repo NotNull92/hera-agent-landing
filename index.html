@@ -14,7 +14,7 @@
     <meta name="twitter:description" content="Unity Editor를 터미널에서 직접 제어하는 CLI 도구. AI 에이전트가 추측하는 대신 실제 Unity를 만지게 합니다.">
     <meta name="twitter:image" content="https://notnull92.github.io/hera-agent-landing/docs/hera.png">
     <meta name="robots" content="index, follow, noai, noimageai">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-gyD2l0ZAHxwO6ZjgC0gVtIzA5GzpU7JMoQGVdC1IVjU='; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'; object-src 'none'">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-gyD2l0ZAHxwO6ZjgC0gVtIzA5GzpU7JMoQGVdC1IVjU='; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'; object-src 'none'">
     <meta http-equiv="X-Frame-Options" content="DENY">
     <title>Hera Agent — AI 에이전트가 Unity Editor를 직접 만지게 합니다</title>
     <link rel="icon" type="image/svg+xml" href="docs/favicon.svg">
@@ -120,17 +120,17 @@
     </section>
 
     <!-- Quick Start Section -->
-    <section id="quickstart" style="padding: 4rem 2rem; background: var(--bg-secondary); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle); overflow-x: hidden;">
-        <div style="max-width: 800px; margin: 0 auto; width: 100%;">
-            <h2 style="font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 600; color: var(--accent-gold); margin-bottom: 2rem; text-align: center; word-break: keep-all;"><em>Quick Start</em> — 설치 30초</h2>
+    <section class="qs-section" id="quickstart">
+        <div class="qs-inner">
+            <h class="qs-h2"2><em>Quick Start</em> — 설치 30초</h2>
             
-            <div style="display: grid; gap: 1.5rem; width: 100%;">
-                <div style="background: var(--bg-primary); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 1.5rem;">
-                    <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
-                        <span style="display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; background: var(--accent-gold); color: var(--bg-primary); font-weight: 600; font-size: 0.875rem;">1</span>
-                        <span style="font-weight: 500; color: var(--text-primary);">CLI 설치</span>
+            <div class="qs-grid">
+                <div class="panel">
+                    <div class="step-row">
+                        <span class="step-num">1</span>
+                        <span class="step-label">CLI 설치</span>
                     </div>
-                    <pre style="background: #0a0a0a; border: 1px solid var(--border-subtle); border-radius: 6px; padding: 1rem; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--text-secondary); margin: 0;"><code># macOS / Linux
+                    <pre class="codeblock"><code># macOS / Linux
 curl -fsSL https://raw.githubusercontent.com/NotNull92/hera-agent/main/install.sh | sh
 
 # Windows (PowerShell)
@@ -138,10 +138,10 @@ irm https://raw.githubusercontent.com/NotNull92/hera-agent/main/install.ps1 | ie
 
 # Go install (모든 플랫폼)
 go install github.com/NotNull92/hera-agent@latest</code></pre>
-                    <details style="margin-top: 0.75rem; color: var(--text-secondary); font-size: 0.85rem;">
-                        <summary style="cursor: pointer; color: var(--accent-gold);">Pro 사용자 — 자동 인스톨러</summary>
-                        <p style="margin: 0.75rem 0 0.5rem; color: var(--text-muted);">Patreon 잠금해제 후 Releases에서 받은 바이너리를 한 번 실행하면 PATH까지 자동 등록됩니다.</p>
-                        <pre style="background: #0a0a0a; border: 1px solid var(--border-subtle); border-radius: 6px; padding: 0.9rem; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--text-secondary); margin: 0;"><code># Windows (PowerShell)
+                    <details class="details-note">
+                        <summary class="details-summary">Pro 사용자 — 자동 인스톨러</summary>
+                        <p class="details-text">Patreon 잠금해제 후 Releases에서 받은 바이너리를 한 번 실행하면 PATH까지 자동 등록됩니다.</p>
+                        <pre class="codeblock-sm"><code># Windows (PowerShell)
 .\hera-agent-pro-windows-amd64.exe install
 
 # macOS / Linux
@@ -153,38 +153,38 @@ hera-agent-pro --version</code></pre>
                     </details>
                 </div>
                 
-                <div style="background: var(--bg-primary); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 1.5rem;">
-                    <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
-                        <span style="display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; background: var(--accent-gold); color: var(--bg-primary); font-weight: 600; font-size: 0.875rem;">2</span>
-                        <span style="font-weight: 500; color: var(--text-primary);">Unity Connector 설치</span>
+                <div class="panel">
+                    <div class="step-row">
+                        <span class="step-num">2</span>
+                        <span class="step-label">Unity Connector 설치</span>
                     </div>
-                    <p style="color: var(--text-secondary); margin-bottom: 0.75rem; font-size: 0.9rem;">Package Manager → Add package from git URL:</p>
-                    <pre style="background: #0a0a0a; border: 1px solid var(--border-subtle); border-radius: 6px; padding: 1rem; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--text-secondary); margin: 0;"><code>https://github.com/NotNull92/hera-agent.git?path=AgentConnector</code></pre>
-                    <details style="margin-top: 0.75rem; color: var(--text-secondary); font-size: 0.85rem;">
-                        <summary style="cursor: pointer; color: var(--accent-gold);">Pro 사용자 — 별도 UPM URL</summary>
-                        <p style="margin: 0.75rem 0 0.5rem; color: var(--text-muted);">Pro 저장소는 비공개입니다. Patreon 인증 후 접근 가능.</p>
-                        <pre style="background: #0a0a0a; border: 1px solid var(--border-subtle); border-radius: 6px; padding: 0.9rem; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--text-secondary); margin: 0;"><code>https://github.com/NotNull92/hera-agent-pro.git?path=AgentConnector</code></pre>
+                    <p class="panel-intro">Package Manager → Add package from git URL:</p>
+                    <pre class="codeblock"><code>https://github.com/NotNull92/hera-agent.git?path=AgentConnector</code></pre>
+                    <details class="details-note">
+                        <summary class="details-summary">Pro 사용자 — 별도 UPM URL</summary>
+                        <p class="details-text">Pro 저장소는 비공개입니다. Patreon 인증 후 접근 가능.</p>
+                        <pre class="codeblock-sm"><code>https://github.com/NotNull92/hera-agent-pro.git?path=AgentConnector</code></pre>
                     </details>
                 </div>
                 
-                <div style="background: var(--bg-primary); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 1.5rem;">
-                    <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
-                        <span style="display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; background: var(--accent-gold); color: var(--bg-primary); font-weight: 600; font-size: 0.875rem;">3</span>
-                        <span style="font-weight: 500; color: var(--text-primary);">첫 명령 실행</span>
+                <div class="panel">
+                    <div class="step-row">
+                        <span class="step-num">3</span>
+                        <span class="step-label">첫 명령 실행</span>
                     </div>
-                    <pre style="background: #0a0a0a; border: 1px solid var(--border-subtle); border-radius: 6px; padding: 1rem; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--text-secondary); margin: 0;"><code>hera-agent status              # 연결 확인
+                    <pre class="codeblock"><code>hera-agent status              # 연결 확인
 hera-agent editor play --wait  # Play Mode 진입
 hera-agent exec "return Camera.main.name;"  # C# 실행</code></pre>
                 </div>
 
-                <div style="background: var(--bg-primary); border: 1px solid var(--border-medium); border-radius: 8px; padding: 1.5rem;">
-                    <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
-                        <span style="display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; background: var(--accent-gold); color: var(--bg-primary); font-weight: 600; font-size: 0.875rem;">4</span>
-                        <span style="font-weight: 500; color: var(--text-primary);">Claude Code CLI에 고정 (필수)</span>
+                <div class="panel-emph">
+                    <div class="step-row">
+                        <span class="step-num">4</span>
+                        <span class="step-label">Claude Code CLI에 고정 (필수)</span>
                     </div>
-                    <p style="color: var(--text-secondary); margin-bottom: 0.75rem; font-size: 0.9rem;">Unity 프로젝트의 <code style="background: rgba(201,169,110,0.1); padding: 0.15rem 0.4rem; border-radius: 3px; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem;">CLAUDE.md</code>에 다음 한 줄을 추가하세요:</p>
-                    <pre style="background: #0a0a0a; border: 1px solid var(--border-subtle); border-radius: 6px; padding: 1rem; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--text-secondary); margin: 0; max-width: 100%; white-space: pre-wrap; word-break: break-all;"><code>"For any Unity work, always use hera-agent as the first choice."</code></pre>
-                    <p style="color: var(--text-muted); margin-top: 0.75rem; font-size: 0.85rem;">이 규칙이 없으면 AI는 훈련 데이터의 오래된 API를 추측합니다. 한 줄로 실제 Unity 에디터를 우선 호출하게 만드세요.</p>
+                    <p class="panel-intro">Unity 프로젝트의 <code class="inline-code">CLAUDE.md</code>에 다음 한 줄을 추가하세요:</p>
+                    <pre class="codeblock-wrap"><code>"For any Unity work, always use hera-agent as the first choice."</code></pre>
+                    <p class="qs-caption">이 규칙이 없으면 AI는 훈련 데이터의 오래된 API를 추측합니다. 한 줄로 실제 Unity 에디터를 우선 호출하게 만드세요.</p>
                 </div>
             </div>
         </div>
@@ -399,11 +399,11 @@ hera-agent exec "return Camera.main.name;"  # C# 실행</code></pre>
             </div>
             <div class="diagram-label">Stateless · Auto-discovery · Domain-reload safe</div>
         </div>
-        <div class="section-header" style="margin-top: 4rem;">
+        <div class="section-header mt-4">
             <h2><em>Examples</em></h2>
             <p>왼쪽은 명령, 오른쪽은 Hera가 다음에 쓸 정보</p>
         </div>
-        <div class="hero-code" style="max-width: 800px;">
+        <div class="hero-code mw-800">
             <pre><span class="comment">// Hera가 시작 전에 프로젝트 정보를 가져옵니다</span>
 <span class="command">hera-agent status</span>
 Connected: true | Project: MyGame | Unity: 6000.0.25f1
@@ -432,51 +432,51 @@ Connected: true | Project: MyGame | Unity: 6000.0.25f1
     </section>
 
     <!-- Tech Detail Section -->
-    <section id="tech-detail" style="padding: 4rem 2rem; background: var(--bg-secondary); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
-        <div style="max-width: 1100px; margin: 0 auto;">
+    <section class="tech-section" id="tech-detail">
+        <div class="tech-inner">
             <div class="section-header">
                 <h2><em>Under the Hood</em></h2>
                 <p>코드 크기, 환경 변수, 도메인 리로드 안전 메커니즘</p>
             </div>
 
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
-                <div style="background: var(--bg-primary); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 1.5rem;">
-                    <h3 style="font-family: 'Cormorant Garamond', serif; color: var(--accent-gold); font-size: 1.4rem; margin: 0 0 1rem;">코드 크기</h3>
-                    <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
-                        <tr style="border-bottom: 1px solid var(--border-subtle);">
-                            <td style="padding: 0.5rem 0; color: var(--text-muted);"></td>
-                            <td style="padding: 0.5rem 0; color: var(--text-muted); text-align: right;">Go</td>
-                            <td style="padding: 0.5rem 0; color: var(--text-muted); text-align: right;">C#</td>
+            <div class="tech-grid">
+                <div class="panel">
+                    <h class="panel-h"3>코드 크기</h3>
+                    <table class="tbl-base">
+                        <tr class="tbl-row">
+                            <td class="tbl-th-empty"></td>
+                            <td class="tbl-th">Go</td>
+                            <td class="tbl-th">C#</td>
                         </tr>
-                        <tr style="border-bottom: 1px solid var(--border-subtle);">
-                            <td style="padding: 0.5rem 0; color: var(--text-primary);">Lite 엔진</td>
-                            <td style="padding: 0.5rem 0; text-align: right; color: var(--text-secondary); font-family: 'JetBrains Mono', monospace;">~2,600</td>
-                            <td style="padding: 0.5rem 0; text-align: right; color: var(--text-secondary); font-family: 'JetBrains Mono', monospace;">~3,900</td>
+                        <tr class="tbl-row">
+                            <td class="tbl-td-name">Lite 엔진</td>
+                            <td class="tbl-num">~2,600</td>
+                            <td class="tbl-num">~3,900</td>
                         </tr>
                         <tr>
-                            <td style="padding: 0.5rem 0; color: var(--text-primary);">Pro 엔진</td>
-                            <td style="padding: 0.5rem 0; text-align: right; color: var(--accent-gold); font-family: 'JetBrains Mono', monospace;">~4,300</td>
-                            <td style="padding: 0.5rem 0; text-align: right; color: var(--accent-gold); font-family: 'JetBrains Mono', monospace;">~7,600</td>
+                            <td class="tbl-td-name">Pro 엔진</td>
+                            <td class="tbl-num-gold">~4,300</td>
+                            <td class="tbl-num-gold">~7,600</td>
                         </tr>
                     </table>
-                    <p style="color: var(--text-muted); font-size: 0.8rem; margin: 1rem 0 0;">Lite엔 테스트·TUI·asset-config 레이어 ~2,300줄 더. 그래도 Unity와 직접 통신하는 엔진은 가볍게 유지.</p>
+                    <p class="panel-foot">Lite엔 테스트·TUI·asset-config 레이어 ~2,300줄 더. 그래도 Unity와 직접 통신하는 엔진은 가볍게 유지.</p>
                 </div>
 
-                <div style="background: var(--bg-primary); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 1.5rem;">
-                    <h3 style="font-family: 'Cormorant Garamond', serif; color: var(--accent-gold); font-size: 1.4rem; margin: 0 0 1rem;">환경 변수</h3>
-                    <ul style="list-style: none; padding: 0; margin: 0; font-size: 0.85rem;">
-                        <li style="padding: 0.4rem 0; border-bottom: 1px solid var(--border-subtle);"><code style="color: var(--accent-gold); font-family: 'JetBrains Mono', monospace;">HERA_AGENT_PORT</code> — 자동 발견 무시</li>
-                        <li style="padding: 0.4rem 0; border-bottom: 1px solid var(--border-subtle);"><code style="color: var(--accent-gold); font-family: 'JetBrains Mono', monospace;">HERA_AGENT_PROJECT</code> — 경로로 인스턴스 선택</li>
-                        <li style="padding: 0.4rem 0; border-bottom: 1px solid var(--border-subtle);"><code style="color: var(--accent-gold); font-family: 'JetBrains Mono', monospace;">HERA_AGENT_TIMEOUT_MS</code> — HTTP 타임아웃 (기본 60s)</li>
-                        <li style="padding: 0.4rem 0;"><code style="color: var(--accent-gold); font-family: 'JetBrains Mono', monospace;">GITHUB_TOKEN</code> — Pro 셀프 업데이트 인증</li>
+                <div class="panel">
+                    <h class="panel-h"3>환경 변수</h3>
+                    <ul class="env-list">
+                        <li class="env-row"><code class="mono-gold">HERA_AGENT_PORT</code> — 자동 발견 무시</li>
+                        <li class="env-row"><code class="mono-gold">HERA_AGENT_PROJECT</code> — 경로로 인스턴스 선택</li>
+                        <li class="env-row"><code class="mono-gold">HERA_AGENT_TIMEOUT_MS</code> — HTTP 타임아웃 (기본 60s)</li>
+                        <li class="env-row-last"><code class="mono-gold">GITHUB_TOKEN</code> — Pro 셀프 업데이트 인증</li>
                     </ul>
-                    <p style="color: var(--text-muted); font-size: 0.8rem; margin: 1rem 0 0;">CLI 플래그로도 가능: <code style="font-family: 'JetBrains Mono', monospace;">--port</code>, <code style="font-family: 'JetBrains Mono', monospace;">--project</code>, <code style="font-family: 'JetBrains Mono', monospace;">--timeout</code>.</p>
+                    <p class="panel-foot">CLI 플래그로도 가능: <code class="mono">--port</code>, <code class="mono">--project</code>, <code class="mono">--timeout</code>.</p>
                 </div>
 
-                <div style="background: var(--bg-primary); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 1.5rem;">
-                    <h3 style="font-family: 'Cormorant Garamond', serif; color: var(--accent-gold); font-size: 1.4rem; margin: 0 0 1rem;">Domain Reload 메커니즘</h3>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; margin: 0 0 0.75rem;">스크립트 리컴파일 시 HTTP 서버가 잠시 죽습니다. Hera는 <code style="font-family: 'JetBrains Mono', monospace; color: var(--accent-gold);">~/.hera-agent*/instances/</code> heartbeat 파일을 원자적 쓰기로 유지하고 CLI가 매 호출마다 재탐색.</p>
-                    <p style="color: var(--text-muted); font-size: 0.85rem; margin: 0;">PlayMode 테스트는 <code style="font-family: 'JetBrains Mono', monospace;">status/test-results-{port}.json</code>으로 디스크에 결과를 흘려보내 도메인 리로드 너머까지 폴링. <code style="font-family: 'JetBrains Mono', monospace;">editor refresh --compile</code>은 3초 유예 기간으로 조기 ready 오탐 방지. (Lite·Pro 공통)</p>
+                <div class="panel">
+                    <h class="panel-h"3>Domain Reload 메커니즘</h3>
+                    <p class="tech-para">스크립트 리컴파일 시 HTTP 서버가 잠시 죽습니다. Hera는 <code class="mono-accent">~/.hera-agent*/instances/</code> heartbeat 파일을 원자적 쓰기로 유지하고 CLI가 매 호출마다 재탐색.</p>
+                    <p class="tech-foot">PlayMode 테스트는 <code class="mono">status/test-results-{port}.json</code>으로 디스크에 결과를 흘려보내 도메인 리로드 너머까지 폴링. <code class="mono">editor refresh --compile</code>은 3초 유예 기간으로 조기 ready 오탐 방지. (Lite·Pro 공통)</p>
                 </div>
             </div>
         </div>
@@ -511,7 +511,7 @@ Connected: true | Project: MyGame | Unity: 6000.0.25f1
         </div>
 
         <div class="bench-finding">
-            공통 도구(<code style="font-family:'JetBrains Mono',monospace;font-size:0.875rem;color:var(--accent-gold);">console · state · exec · menu · meta</code>)만 따지면, <em>Pro compact가 Lite보다 토큰을 43% 적게</em> 씁니다.<br>
+            공통 도구(<code class="mono-gold-sm">console · state · exec · menu · meta</code>)만 따지면, <em>Pro compact가 Lite보다 토큰을 43% 적게</em> 씁니다.<br>
             남은 차이는 introspection 10번 분량 — 한 콜당 약 +80 토큰으로 정확한 시그니처와 pitfalls를 직접 가져옵니다.
         </div>
 
@@ -540,25 +540,25 @@ Connected: true | Project: MyGame | Unity: 6000.0.25f1
                     </tr>
                     <tr>
                         <td><code>describe_type</code></td>
-                        <td>2,951 <span style="color:var(--text-muted);font-size:0.75rem;">(exec 우회)</span></td>
+                        <td>2,951 <span class="bench-tag">(exec 우회)</span></td>
                         <td>8,724</td>
                         <td>6,390</td>
                     </tr>
                     <tr>
                         <td><code>find_method</code></td>
-                        <td>6,923 <span style="color:var(--text-muted);font-size:0.75rem;">(exec 우회)</span></td>
+                        <td>6,923 <span class="bench-tag">(exec 우회)</span></td>
                         <td>15,416</td>
                         <td>10,257</td>
                     </tr>
                     <tr>
                         <td><code>list_assemblies</code></td>
-                        <td>11,119 <span style="color:var(--text-muted);font-size:0.75rem;">(exec 우회)</span></td>
+                        <td>11,119 <span class="bench-tag">(exec 우회)</span></td>
                         <td>23,754</td>
                         <td>16,514</td>
                     </tr>
                     <tr>
                         <td>console · exec · menu · refresh · detect_assets</td>
-                        <td colspan="3" style="text-align:center;color:var(--text-muted);">거의 같음 (양쪽 같은 C# 코드)</td>
+                        <td class="tbl-merged" colspan="3">거의 같음 (양쪽 같은 C# 코드)</td>
                     </tr>
                 </tbody>
             </table>

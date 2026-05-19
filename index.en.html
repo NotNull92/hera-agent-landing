@@ -14,7 +14,7 @@
     <meta name="twitter:description" content="A CLI tool that lets AI agents control Unity Editor directly from the terminal. No guessing, only measurement.">
     <meta name="twitter:image" content="https://notnull92.github.io/hera-agent-landing/docs/hera.png">
     <meta name="robots" content="index, follow, noai, noimageai">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-gyD2l0ZAHxwO6ZjgC0gVtIzA5GzpU7JMoQGVdC1IVjU='; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'; object-src 'none'">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-gyD2l0ZAHxwO6ZjgC0gVtIzA5GzpU7JMoQGVdC1IVjU='; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'; object-src 'none'">
     <meta http-equiv="X-Frame-Options" content="DENY">
     <title>Hera Agent — Let AI Agents touch the Unity Editor directly</title>
     <link rel="icon" type="image/svg+xml" href="docs/favicon.svg">
@@ -120,17 +120,17 @@
     </section>
 
     <!-- Quick Start Section -->
-    <section id="quickstart" style="padding: 4rem 2rem; background: var(--bg-secondary); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle); overflow-x: hidden;">
-        <div style="max-width: 800px; margin: 0 auto; width: 100%;">
-            <h2 style="font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 600; color: var(--accent-gold); margin-bottom: 2rem; text-align: center; word-break: keep-all;"><em>Quick Start</em> — Install in 30 seconds</h2>
+    <section class="qs-section" id="quickstart">
+        <div class="qs-inner">
+            <h class="qs-h2"2><em>Quick Start</em> — Install in 30 seconds</h2>
             
-            <div style="display: grid; gap: 1.5rem; width: 100%;">
-                <div style="background: var(--bg-primary); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 1.5rem;">
-                    <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
-                        <span style="display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; background: var(--accent-gold); color: var(--bg-primary); font-weight: 600; font-size: 0.875rem;">1</span>
-                        <span style="font-weight: 500; color: var(--text-primary);">Install CLI</span>
+            <div class="qs-grid">
+                <div class="panel">
+                    <div class="step-row">
+                        <span class="step-num">1</span>
+                        <span class="step-label">Install CLI</span>
                     </div>
-                    <pre style="background: #0a0a0a; border: 1px solid var(--border-subtle); border-radius: 6px; padding: 1rem; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--text-secondary); margin: 0;"><code># macOS / Linux
+                    <pre class="codeblock"><code># macOS / Linux
 curl -fsSL https://raw.githubusercontent.com/NotNull92/hera-agent/main/install.sh | sh
 
 # Windows (PowerShell)
@@ -138,10 +138,10 @@ irm https://raw.githubusercontent.com/NotNull92/hera-agent/main/install.ps1 | ie
 
 # Go install (any platform)
 go install github.com/NotNull92/hera-agent@latest</code></pre>
-                    <details style="margin-top: 0.75rem; color: var(--text-secondary); font-size: 0.85rem;">
-                        <summary style="cursor: pointer; color: var(--accent-gold);">Pro users — self-installer</summary>
-                        <p style="margin: 0.75rem 0 0.5rem; color: var(--text-muted);">After Patreon unlock, run the downloaded binary once — it installs itself and registers PATH.</p>
-                        <pre style="background: #0a0a0a; border: 1px solid var(--border-subtle); border-radius: 6px; padding: 0.9rem; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--text-secondary); margin: 0;"><code># Windows (PowerShell)
+                    <details class="details-note">
+                        <summary class="details-summary">Pro users — self-installer</summary>
+                        <p class="details-text">After Patreon unlock, run the downloaded binary once — it installs itself and registers PATH.</p>
+                        <pre class="codeblock-sm"><code># Windows (PowerShell)
 .\hera-agent-pro-windows-amd64.exe install
 
 # macOS / Linux
@@ -153,38 +153,38 @@ hera-agent-pro --version</code></pre>
                     </details>
                 </div>
                 
-                <div style="background: var(--bg-primary); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 1.5rem;">
-                    <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
-                        <span style="display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; background: var(--accent-gold); color: var(--bg-primary); font-weight: 600; font-size: 0.875rem;">2</span>
-                        <span style="font-weight: 500; color: var(--text-primary);">Install Unity Connector</span>
+                <div class="panel">
+                    <div class="step-row">
+                        <span class="step-num">2</span>
+                        <span class="step-label">Install Unity Connector</span>
                     </div>
-                    <p style="color: var(--text-secondary); margin-bottom: 0.75rem; font-size: 0.9rem;">Package Manager → Add package from git URL:</p>
-                    <pre style="background: #0a0a0a; border: 1px solid var(--border-subtle); border-radius: 6px; padding: 1rem; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--text-secondary); margin: 0;"><code>https://github.com/NotNull92/hera-agent.git?path=AgentConnector</code></pre>
-                    <details style="margin-top: 0.75rem; color: var(--text-secondary); font-size: 0.85rem;">
-                        <summary style="cursor: pointer; color: var(--accent-gold);">Pro users — separate UPM URL</summary>
-                        <p style="margin: 0.75rem 0 0.5rem; color: var(--text-muted);">The Pro repo is private. Access requires Patreon authentication.</p>
-                        <pre style="background: #0a0a0a; border: 1px solid var(--border-subtle); border-radius: 6px; padding: 0.9rem; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--text-secondary); margin: 0;"><code>https://github.com/NotNull92/hera-agent-pro.git?path=AgentConnector</code></pre>
+                    <p class="panel-intro">Package Manager → Add package from git URL:</p>
+                    <pre class="codeblock"><code>https://github.com/NotNull92/hera-agent.git?path=AgentConnector</code></pre>
+                    <details class="details-note">
+                        <summary class="details-summary">Pro users — separate UPM URL</summary>
+                        <p class="details-text">The Pro repo is private. Access requires Patreon authentication.</p>
+                        <pre class="codeblock-sm"><code>https://github.com/NotNull92/hera-agent-pro.git?path=AgentConnector</code></pre>
                     </details>
                 </div>
                 
-                <div style="background: var(--bg-primary); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 1.5rem;">
-                    <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
-                        <span style="display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; background: var(--accent-gold); color: var(--bg-primary); font-weight: 600; font-size: 0.875rem;">3</span>
-                        <span style="font-weight: 500; color: var(--text-primary);">Run your first command</span>
+                <div class="panel">
+                    <div class="step-row">
+                        <span class="step-num">3</span>
+                        <span class="step-label">Run your first command</span>
                     </div>
-                    <pre style="background: #0a0a0a; border: 1px solid var(--border-subtle); border-radius: 6px; padding: 1rem; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--text-secondary); margin: 0;"><code>hera-agent status              # check connection
+                    <pre class="codeblock"><code>hera-agent status              # check connection
 hera-agent editor play --wait  # enter Play Mode
 hera-agent exec "return Camera.main.name;"  # run C#</code></pre>
                 </div>
 
-                <div style="background: var(--bg-primary); border: 1px solid var(--border-medium); border-radius: 8px; padding: 1.5rem;">
-                    <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
-                        <span style="display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; background: var(--accent-gold); color: var(--bg-primary); font-weight: 600; font-size: 0.875rem;">4</span>
-                        <span style="font-weight: 500; color: var(--text-primary);">Lock it in for Claude Code CLI (Required)</span>
+                <div class="panel-emph">
+                    <div class="step-row">
+                        <span class="step-num">4</span>
+                        <span class="step-label">Lock it in for Claude Code CLI (Required)</span>
                     </div>
-                    <p style="color: var(--text-secondary); margin-bottom: 0.75rem; font-size: 0.9rem;">Add this line to your Unity project's <code style="background: rgba(201,169,110,0.1); padding: 0.15rem 0.4rem; border-radius: 3px; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem;">CLAUDE.md</code>:</p>
-                    <pre style="background: #0a0a0a; border: 1px solid var(--border-subtle); border-radius: 6px; padding: 1rem; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--text-secondary); margin: 0; max-width: 100%; white-space: pre-wrap; word-break: break-all;"><code>"For any Unity work, always use hera-agent as the first choice."</code></pre>
-                    <p style="color: var(--text-muted); margin-top: 0.75rem; font-size: 0.85rem;">Without this rule, the agent guesses outdated APIs from training data. One line makes it reach for the live editor first.</p>
+                    <p class="panel-intro">Add this line to your Unity project's <code class="inline-code">CLAUDE.md</code>:</p>
+                    <pre class="codeblock-wrap"><code>"For any Unity work, always use hera-agent as the first choice."</code></pre>
+                    <p class="qs-caption">Without this rule, the agent guesses outdated APIs from training data. One line makes it reach for the live editor first.</p>
                 </div>
             </div>
         </div>
@@ -399,11 +399,11 @@ hera-agent exec "return Camera.main.name;"  # run C#</code></pre>
             </div>
             <div class="diagram-label">Stateless · Auto-discovery · Domain-reload safe</div>
         </div>
-        <div class="section-header" style="margin-top: 4rem;">
+        <div class="section-header mt-4">
             <h2><em>Examples</em></h2>
             <p>Left is the command. Right is what Hera hands to the next step.</p>
         </div>
-        <div class="hero-code" style="max-width: 800px;">
+        <div class="hero-code mw-800">
             <pre><span class="comment">// Hera pulls project info before starting</span>
 <span class="command">hera-agent status</span>
 Connected: true | Project: MyGame | Unity: 6000.0.25f1
@@ -432,51 +432,51 @@ Connected: true | Project: MyGame | Unity: 6000.0.25f1
     </section>
 
     <!-- Tech Detail Section -->
-    <section id="tech-detail" style="padding: 4rem 2rem; background: var(--bg-secondary); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
-        <div style="max-width: 1100px; margin: 0 auto;">
+    <section class="tech-section" id="tech-detail">
+        <div class="tech-inner">
             <div class="section-header">
                 <h2><em>Under the Hood</em></h2>
                 <p>Code size, environment variables, domain-reload safety</p>
             </div>
 
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
-                <div style="background: var(--bg-primary); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 1.5rem;">
-                    <h3 style="font-family: 'Cormorant Garamond', serif; color: var(--accent-gold); font-size: 1.4rem; margin: 0 0 1rem;">Code size</h3>
-                    <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
-                        <tr style="border-bottom: 1px solid var(--border-subtle);">
-                            <td style="padding: 0.5rem 0; color: var(--text-muted);"></td>
-                            <td style="padding: 0.5rem 0; color: var(--text-muted); text-align: right;">Go</td>
-                            <td style="padding: 0.5rem 0; color: var(--text-muted); text-align: right;">C#</td>
+            <div class="tech-grid">
+                <div class="panel">
+                    <h class="panel-h"3>Code size</h3>
+                    <table class="tbl-base">
+                        <tr class="tbl-row">
+                            <td class="tbl-th-empty"></td>
+                            <td class="tbl-th">Go</td>
+                            <td class="tbl-th">C#</td>
                         </tr>
-                        <tr style="border-bottom: 1px solid var(--border-subtle);">
-                            <td style="padding: 0.5rem 0; color: var(--text-primary);">Lite engine</td>
-                            <td style="padding: 0.5rem 0; text-align: right; color: var(--text-secondary); font-family: 'JetBrains Mono', monospace;">~2,600</td>
-                            <td style="padding: 0.5rem 0; text-align: right; color: var(--text-secondary); font-family: 'JetBrains Mono', monospace;">~3,900</td>
+                        <tr class="tbl-row">
+                            <td class="tbl-td-name">Lite engine</td>
+                            <td class="tbl-num">~2,600</td>
+                            <td class="tbl-num">~3,900</td>
                         </tr>
                         <tr>
-                            <td style="padding: 0.5rem 0; color: var(--text-primary);">Pro engine</td>
-                            <td style="padding: 0.5rem 0; text-align: right; color: var(--accent-gold); font-family: 'JetBrains Mono', monospace;">~4,300</td>
-                            <td style="padding: 0.5rem 0; text-align: right; color: var(--accent-gold); font-family: 'JetBrains Mono', monospace;">~7,600</td>
+                            <td class="tbl-td-name">Pro engine</td>
+                            <td class="tbl-num-gold">~4,300</td>
+                            <td class="tbl-num-gold">~7,600</td>
                         </tr>
                     </table>
-                    <p style="color: var(--text-muted); font-size: 0.8rem; margin: 1rem 0 0;">Tests, TUI, and asset-config layer add ~2,300 more lines. The engine that talks to Unity stays lean.</p>
+                    <p class="panel-foot">Tests, TUI, and asset-config layer add ~2,300 more lines. The engine that talks to Unity stays lean.</p>
                 </div>
 
-                <div style="background: var(--bg-primary); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 1.5rem;">
-                    <h3 style="font-family: 'Cormorant Garamond', serif; color: var(--accent-gold); font-size: 1.4rem; margin: 0 0 1rem;">Env variables</h3>
-                    <ul style="list-style: none; padding: 0; margin: 0; font-size: 0.85rem;">
-                        <li style="padding: 0.4rem 0; border-bottom: 1px solid var(--border-subtle);"><code style="color: var(--accent-gold); font-family: 'JetBrains Mono', monospace;">HERA_AGENT_PORT</code> — bypass auto-discovery</li>
-                        <li style="padding: 0.4rem 0; border-bottom: 1px solid var(--border-subtle);"><code style="color: var(--accent-gold); font-family: 'JetBrains Mono', monospace;">HERA_AGENT_PROJECT</code> — pick instance by path</li>
-                        <li style="padding: 0.4rem 0; border-bottom: 1px solid var(--border-subtle);"><code style="color: var(--accent-gold); font-family: 'JetBrains Mono', monospace;">HERA_AGENT_TIMEOUT_MS</code> — HTTP timeout (default 60s)</li>
-                        <li style="padding: 0.4rem 0;"><code style="color: var(--accent-gold); font-family: 'JetBrains Mono', monospace;">GITHUB_TOKEN</code> — Pro self-update auth</li>
+                <div class="panel">
+                    <h class="panel-h"3>Env variables</h3>
+                    <ul class="env-list">
+                        <li class="env-row"><code class="mono-gold">HERA_AGENT_PORT</code> — bypass auto-discovery</li>
+                        <li class="env-row"><code class="mono-gold">HERA_AGENT_PROJECT</code> — pick instance by path</li>
+                        <li class="env-row"><code class="mono-gold">HERA_AGENT_TIMEOUT_MS</code> — HTTP timeout (default 60s)</li>
+                        <li class="env-row-last"><code class="mono-gold">GITHUB_TOKEN</code> — Pro self-update auth</li>
                     </ul>
-                    <p style="color: var(--text-muted); font-size: 0.8rem; margin: 1rem 0 0;">Also as CLI flags: <code style="font-family: 'JetBrains Mono', monospace;">--port</code>, <code style="font-family: 'JetBrains Mono', monospace;">--project</code>, <code style="font-family: 'JetBrains Mono', monospace;">--timeout</code>.</p>
+                    <p class="panel-foot">Also as CLI flags: <code class="mono">--port</code>, <code class="mono">--project</code>, <code class="mono">--timeout</code>.</p>
                 </div>
 
-                <div style="background: var(--bg-primary); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 1.5rem;">
-                    <h3 style="font-family: 'Cormorant Garamond', serif; color: var(--accent-gold); font-size: 1.4rem; margin: 0 0 1rem;">Domain Reload mechanism</h3>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; margin: 0 0 0.75rem;">The HTTP server dies briefly when scripts recompile. Hera holds <code style="font-family: 'JetBrains Mono', monospace; color: var(--accent-gold);">~/.hera-agent*/instances/</code> heartbeat files via atomic writes, and the CLI re-discovers on every call.</p>
-                    <p style="color: var(--text-muted); font-size: 0.85rem; margin: 0;">PlayMode test results stream through <code style="font-family: 'JetBrains Mono', monospace;">status/test-results-{port}.json</code> on disk, so polling survives reload. <code style="font-family: 'JetBrains Mono', monospace;">editor refresh --compile</code> uses a 3s grace window to avoid false "ready" detection. (Lite + Pro)</p>
+                <div class="panel">
+                    <h class="panel-h"3>Domain Reload mechanism</h3>
+                    <p class="tech-para">The HTTP server dies briefly when scripts recompile. Hera holds <code class="mono-accent">~/.hera-agent*/instances/</code> heartbeat files via atomic writes, and the CLI re-discovers on every call.</p>
+                    <p class="tech-foot">PlayMode test results stream through <code class="mono">status/test-results-{port}.json</code> on disk, so polling survives reload. <code class="mono">editor refresh --compile</code> uses a 3s grace window to avoid false "ready" detection. (Lite + Pro)</p>
                 </div>
             </div>
         </div>
@@ -511,7 +511,7 @@ Connected: true | Project: MyGame | Unity: 6000.0.25f1
         </div>
 
         <div class="bench-finding">
-            On the shared tools (<code style="font-family:'JetBrains Mono',monospace;font-size:0.875rem;color:var(--accent-gold);">console · state · exec · menu · meta</code>), <em>Pro compact spends 43% fewer tokens than Lite</em>.<br>
+            On the shared tools (<code class="mono-gold-sm">console · state · exec · menu · meta</code>), <em>Pro compact spends 43% fewer tokens than Lite</em>.<br>
             The rest is 10 introspection calls — about +80 tokens per call to bring back exact signatures and pitfalls.
         </div>
 
@@ -540,25 +540,25 @@ Connected: true | Project: MyGame | Unity: 6000.0.25f1
                     </tr>
                     <tr>
                         <td><code>describe_type</code></td>
-                        <td>2,951 <span style="color:var(--text-muted);font-size:0.75rem;">(via exec)</span></td>
+                        <td>2,951 <span class="bench-tag">(via exec)</span></td>
                         <td>8,724</td>
                         <td>6,390</td>
                     </tr>
                     <tr>
                         <td><code>find_method</code></td>
-                        <td>6,923 <span style="color:var(--text-muted);font-size:0.75rem;">(via exec)</span></td>
+                        <td>6,923 <span class="bench-tag">(via exec)</span></td>
                         <td>15,416</td>
                         <td>10,257</td>
                     </tr>
                     <tr>
                         <td><code>list_assemblies</code></td>
-                        <td>11,119 <span style="color:var(--text-muted);font-size:0.75rem;">(via exec)</span></td>
+                        <td>11,119 <span class="bench-tag">(via exec)</span></td>
                         <td>23,754</td>
                         <td>16,514</td>
                     </tr>
                     <tr>
                         <td>console · exec · menu · refresh · detect_assets</td>
-                        <td colspan="3" style="text-align:center;color:var(--text-muted);">Roughly identical (same C# both sides)</td>
+                        <td class="tbl-merged" colspan="3">Roughly identical (same C# both sides)</td>
                     </tr>
                 </tbody>
             </table>
