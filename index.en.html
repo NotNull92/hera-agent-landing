@@ -1598,7 +1598,7 @@
                 <li><a href="#faq">FAQ</a></li>
             </ul>
             <div class="nav-actions">
-                <button class="nav-hamburger" onclick="document.querySelector('.nav-mobile-menu').classList.toggle('active')" aria-label="Open menu">
+                <button class="nav-hamburger" aria-label="Open menu">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -1612,11 +1612,11 @@
             </div>
         </div>
         <div class="nav-mobile-menu">
-            <a href="#features" onclick="document.querySelector('.nav-mobile-menu').classList.remove('active')">Features</a>
-            <a href="#how-it-works" onclick="document.querySelector('.nav-mobile-menu').classList.remove('active')">How It Works</a>
-            <a href="#benchmark" onclick="document.querySelector('.nav-mobile-menu').classList.remove('active')">Benchmark</a>
-            <a href="#pricing" onclick="document.querySelector('.nav-mobile-menu').classList.remove('active')">Pricing</a>
-            <a href="#faq" onclick="document.querySelector('.nav-mobile-menu').classList.remove('active')">FAQ</a>
+            <a href="#features">Features</a>
+            <a href="#how-it-works">How It Works</a>
+            <a href="#benchmark">Benchmark</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#faq">FAQ</a>
         </div>
     </nav>
 
@@ -2300,6 +2300,20 @@ Connected: true | Project: MyGame | Unity: 6000.0.25f1
     </footer>
 
     <script>
+        // Mobile nav toggle
+        const navHamburger = document.querySelector('.nav-hamburger');
+        const navMobileMenu = document.querySelector('.nav-mobile-menu');
+        if (navHamburger && navMobileMenu) {
+            navHamburger.addEventListener('click', () => {
+                navMobileMenu.classList.toggle('active');
+            });
+            navMobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navMobileMenu.classList.remove('active');
+                });
+            });
+        }
+
         // FAQ Accordion
         document.querySelectorAll('.faq-question').forEach(button => {
             button.addEventListener('click', () => {
