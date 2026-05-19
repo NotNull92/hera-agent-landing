@@ -1877,7 +1877,7 @@ hera-agent exec "return Camera.main.name;"  # C# 실행</code></pre>
             <div class="feature-card">
                 <span class="feature-tag pro">Pro</span>
                 <h3>pitfalls — describe_type 함정 노트</h3>
-                <p>시그니처와 함께 Unity 6 함정 + Manual 링크가 함께 옵니다. Editor API · MonoBehaviour 생명주기 · uGUI(Canvas/RectTransform/EventSystem/LayoutGroup/ScrollRect/Mask/CanvasGroup) 커버.</p>
+                <p>시그니처와 함께 Unity 6 함정 + Manual 링크가 함께 옵니다. Editor API · MonoBehaviour 생명주기 · uGUI(Canvas/RectTransform/EventSystem/LayoutGroup/ScrollRect/Selectable/Mask/CanvasGroup) 커버.</p>
                 <div class="feature-code">
                     <span class="command">hera-agent-pro describe_type AssetDatabase --members methods</span>
                 </div>
@@ -1892,18 +1892,18 @@ hera-agent exec "return Camera.main.name;"  # C# 실행</code></pre>
             </div>
             <div class="feature-card">
                 <span class="feature-tag pro">Pro</span>
-                <h3>asset-config — 에셋 플러그인 관리</h3>
-                <p>설치된 에셋 자동 감지, on/off, AI 에이전트용 JSON 출력. 인터랙티브 체크박스 UI도 제공.</p>
+                <h3>asset-config set-csc/set-dotnet</h3>
+                <p>Pro 전용 — csc/dotnet 경로를 영속화. <code>exec</code>에서 매번 <code>--csc</code>/<code>--dotnet</code> 안 적어도 됨. on/off·JSON·TUI는 Lite도 같음.</p>
                 <div class="feature-code">
-                    <span class="command">hera-agent-pro asset-config --json</span>
+                    <span class="command">hera-agent-pro asset-config set-csc /usr/local/share/dotnet/.../csc.dll</span>
                 </div>
             </div>
             <div class="feature-card">
                 <span class="feature-tag pro">Pro</span>
                 <h3>자동 다중 인스턴스 발견</h3>
-                <p>Unity를 여러 개 열어도 CWD → 프로젝트 경로 → 포트 → 최근 heartbeat 순으로 자동 선택. <code>--port</code>, <code>--project</code>, <code>UNITY_AGENT_*</code> 환경변수로 명시 오버라이드.</p>
+                <p>Unity를 여러 개 열어도 CWD → 프로젝트 경로 → 포트 → 최근 heartbeat 순으로 자동 선택. <code>--port</code>, <code>--project</code>, <code>HERA_AGENT_*</code> 환경변수로 명시 오버라이드.</p>
                 <div class="feature-code">
-                    <span class="command">UNITY_AGENT_PROJECT=~/Projects/MyGame hera-agent-pro exec ...</span>
+                    <span class="command">HERA_AGENT_PROJECT=~/Projects/MyGame hera-agent-pro exec ...</span>
                 </div>
             </div>
         </div>
@@ -1985,24 +1985,24 @@ Connected: true | Project: MyGame | Unity: 6000.0.25f1
                         </tr>
                         <tr style="border-bottom: 1px solid var(--border-subtle);">
                             <td style="padding: 0.5rem 0; color: var(--text-primary);">Lite 엔진</td>
-                            <td style="padding: 0.5rem 0; text-align: right; color: var(--text-secondary); font-family: 'JetBrains Mono', monospace;">~2,000</td>
+                            <td style="padding: 0.5rem 0; text-align: right; color: var(--text-secondary); font-family: 'JetBrains Mono', monospace;">~2,600</td>
                             <td style="padding: 0.5rem 0; text-align: right; color: var(--text-secondary); font-family: 'JetBrains Mono', monospace;">~3,900</td>
                         </tr>
                         <tr>
                             <td style="padding: 0.5rem 0; color: var(--text-primary);">Pro 엔진</td>
-                            <td style="padding: 0.5rem 0; text-align: right; color: var(--accent-gold); font-family: 'JetBrains Mono', monospace;">~3,400</td>
-                            <td style="padding: 0.5rem 0; text-align: right; color: var(--accent-gold); font-family: 'JetBrains Mono', monospace;">~5,100</td>
+                            <td style="padding: 0.5rem 0; text-align: right; color: var(--accent-gold); font-family: 'JetBrains Mono', monospace;">~4,300</td>
+                            <td style="padding: 0.5rem 0; text-align: right; color: var(--accent-gold); font-family: 'JetBrains Mono', monospace;">~7,600</td>
                         </tr>
                     </table>
-                    <p style="color: var(--text-muted); font-size: 0.8rem; margin: 1rem 0 0;">Lite엔 테스트/TUI/플랫폼 어댑터가 ~1,400줄 더. 그래도 Unity와 직접 통신하는 엔진은 가볍게 유지.</p>
+                    <p style="color: var(--text-muted); font-size: 0.8rem; margin: 1rem 0 0;">Lite엔 테스트·TUI·asset-config 레이어 ~2,300줄 더. 그래도 Unity와 직접 통신하는 엔진은 가볍게 유지.</p>
                 </div>
 
                 <div style="background: var(--bg-primary); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 1.5rem;">
                     <h3 style="font-family: 'Cormorant Garamond', serif; color: var(--accent-gold); font-size: 1.4rem; margin: 0 0 1rem;">환경 변수</h3>
                     <ul style="list-style: none; padding: 0; margin: 0; font-size: 0.85rem;">
-                        <li style="padding: 0.4rem 0; border-bottom: 1px solid var(--border-subtle);"><code style="color: var(--accent-gold); font-family: 'JetBrains Mono', monospace;">UNITY_AGENT_PORT</code> — 자동 발견 무시</li>
-                        <li style="padding: 0.4rem 0; border-bottom: 1px solid var(--border-subtle);"><code style="color: var(--accent-gold); font-family: 'JetBrains Mono', monospace;">UNITY_AGENT_PROJECT</code> — 경로로 인스턴스 선택</li>
-                        <li style="padding: 0.4rem 0; border-bottom: 1px solid var(--border-subtle);"><code style="color: var(--accent-gold); font-family: 'JetBrains Mono', monospace;">UNITY_AGENT_TIMEOUT_MS</code> — HTTP 타임아웃 (기본 60s)</li>
+                        <li style="padding: 0.4rem 0; border-bottom: 1px solid var(--border-subtle);"><code style="color: var(--accent-gold); font-family: 'JetBrains Mono', monospace;">HERA_AGENT_PORT</code> — 자동 발견 무시</li>
+                        <li style="padding: 0.4rem 0; border-bottom: 1px solid var(--border-subtle);"><code style="color: var(--accent-gold); font-family: 'JetBrains Mono', monospace;">HERA_AGENT_PROJECT</code> — 경로로 인스턴스 선택</li>
+                        <li style="padding: 0.4rem 0; border-bottom: 1px solid var(--border-subtle);"><code style="color: var(--accent-gold); font-family: 'JetBrains Mono', monospace;">HERA_AGENT_TIMEOUT_MS</code> — HTTP 타임아웃 (기본 60s)</li>
                         <li style="padding: 0.4rem 0;"><code style="color: var(--accent-gold); font-family: 'JetBrains Mono', monospace;">GITHUB_TOKEN</code> — Pro 셀프 업데이트 인증</li>
                     </ul>
                     <p style="color: var(--text-muted); font-size: 0.8rem; margin: 1rem 0 0;">CLI 플래그로도 가능: <code style="font-family: 'JetBrains Mono', monospace;">--port</code>, <code style="font-family: 'JetBrains Mono', monospace;">--project</code>, <code style="font-family: 'JetBrains Mono', monospace;">--timeout</code>.</p>
@@ -2011,7 +2011,7 @@ Connected: true | Project: MyGame | Unity: 6000.0.25f1
                 <div style="background: var(--bg-primary); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 1.5rem;">
                     <h3 style="font-family: 'Cormorant Garamond', serif; color: var(--accent-gold); font-size: 1.4rem; margin: 0 0 1rem;">Domain Reload 메커니즘</h3>
                     <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; margin: 0 0 0.75rem;">스크립트 리컴파일 시 HTTP 서버가 잠시 죽습니다. Hera는 <code style="font-family: 'JetBrains Mono', monospace; color: var(--accent-gold);">~/.hera-agent*/instances/</code> heartbeat 파일을 원자적 쓰기로 유지하고 CLI가 매 호출마다 재탐색.</p>
-                    <p style="color: var(--text-muted); font-size: 0.85rem; margin: 0;">Pro는 PlayMode 테스트 결과를 <code style="font-family: 'JetBrains Mono', monospace;">status/test-results-{port}.json</code>으로 디스크에 흘려보내 도메인 리로드 너머까지 폴링. <code style="font-family: 'JetBrains Mono', monospace;">--compile</code> 플래그는 3초 유예 기간으로 조기 ready 오탐 방지.</p>
+                    <p style="color: var(--text-muted); font-size: 0.85rem; margin: 0;">PlayMode 테스트는 <code style="font-family: 'JetBrains Mono', monospace;">status/test-results-{port}.json</code>으로 디스크에 결과를 흘려보내 도메인 리로드 너머까지 폴링. <code style="font-family: 'JetBrains Mono', monospace;">editor refresh --compile</code>은 3초 유예 기간으로 조기 ready 오탐 방지. (Lite·Pro 공통)</p>
                 </div>
             </div>
         </div>
@@ -2100,7 +2100,7 @@ Connected: true | Project: MyGame | Unity: 6000.0.25f1
         </div>
 
         <p class="bench-repro">
-            Unity 6000.3.5f2 LTS · NoMoreRolls 프로젝트 · 2026-05-13 측정<br>
+            Unity 6000.3.5f2 LTS · NoMoreRolls 프로젝트 · 2026-05-13 측정 (당시 Lite v0.0.13 · Pro v0.0.34, 현재 최신: Lite v0.0.19 · Pro v0.0.40)<br>
             측정 스크립트와 원본 데이터는 Pro 구독자에게만 공개됩니다.
         </p>
     </section>
@@ -2131,11 +2131,12 @@ Connected: true | Project: MyGame | Unity: 6000.0.25f1
                     <li>doctor — 자가 진단</li>
                     <li>update — 셀프 업데이트</li>
                     <li>uninstall — 완전 제거</li>
+                    <li>asset-config — 에셋 플러그인 on/off, JSON 출력, TUI</li>
                     <li>내 도구 ([HeraTool])</li>
-                    <li class="disabled">asset-config — 에셋 플러그인 관리</li>
                     <li class="disabled">batch — 여러 명령 한 번에</li>
                     <li class="disabled">introspection — 살아있는 API 보기</li>
                     <li class="disabled">exec --check — 실행 전 문법 확인</li>
+                    <li class="disabled">asset-config set-csc/set-dotnet — 컴파일러 경로 영속화</li>
                 </ul>
                 <a href="https://github.com/NotNull92/hera-agent" class="pricing-cta" target="_blank">GitHub에서 공짜로 시작</a>
             </div>
@@ -2151,7 +2152,7 @@ Connected: true | Project: MyGame | Unity: 6000.0.25f1
                     <li>exec --check — 재시도 한 번 줄이기</li>
                     <li>introspection — LLM 짐작 교체</li>
                     <li>batch — 여러 번 호출이 한 번으로</li>
-                    <li>asset-config — 에셋 플러그인 on/off, AI 에이전트용 JSON 출력</li>
+                    <li>asset-config set-csc/set-dotnet — csc/dotnet 경로 영속화</li>
                     <li>Unity Pitfalls 모음 — Editor API · MonoBehaviour 생명주기 · uGUI</li>
                     <li>Discord 우선 지원</li>
                     <li>Patreon에서만 보는 비공개 콘텐츠</li>
@@ -2287,8 +2288,7 @@ Connected: true | Project: MyGame | Unity: 6000.0.25f1
             <div class="footer-links">
                 <a href="https://github.com/NotNull92/hera-agent" target="_blank">GitHub</a>
                 <a href="https://www.patreon.com/c/IndieAlchemist92" target="_blank">Patreon</a>
-                <a href="https://youtube.com/@indiealchemist" target="_blank">YouTube</a>
-                <a href="https://discord.gg/hera-agent" target="_blank">Discord</a>
+                <a href="https://youtube.com/@IndieAlchemist" target="_blank">YouTube</a>
             </div>
             <p class="footer-copy">
                 Built by Victor · Lite under MIT, Pro under private commercial license<br>
