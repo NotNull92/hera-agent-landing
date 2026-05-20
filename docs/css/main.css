@@ -1195,6 +1195,83 @@
             font-weight: 600;
         }
 
+        .bench-cards-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            margin-bottom: 3.5rem;
+            align-items: start;
+        }
+
+        .bench-card {
+            border-top: 1px solid rgba(201, 169, 110, 0.15);
+            padding: 2.25rem 1.75rem 1rem;
+        }
+
+        .bench-card-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            margin-bottom: 1.75rem;
+            font-weight: 500;
+        }
+
+        .bench-card-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .bench-card-list li {
+            font-size: 1.0625rem;
+            color: var(--text-primary);
+            line-height: 1.7;
+            padding: 0.65rem 0 0.65rem 1.5rem;
+            position: relative;
+            word-break: keep-all;
+            overflow-wrap: anywhere;
+        }
+
+        .bench-card-list li + li {
+            border-top: 1px solid rgba(201, 169, 110, 0.06);
+        }
+
+        .bench-card-list li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            top: 0.65rem;
+            color: var(--accent-gold);
+            font-weight: 400;
+        }
+
+        .bench-card-list li em {
+            color: var(--accent-gold);
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-weight: 600;
+            font-size: 1.25rem;
+            letter-spacing: -0.005em;
+        }
+
+        .bench-card-list li code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8125rem;
+            color: var(--accent-gold);
+            background: rgba(201, 169, 110, 0.08);
+            padding: 0.05rem 0.35rem;
+            border-radius: 3px;
+        }
+
+        .bench-table tbody tr.bench-table-total td {
+            font-weight: 600;
+            color: var(--text-primary);
+            border-top: 1px solid rgba(201, 169, 110, 0.25);
+            padding-top: 0.875rem;
+        }
+
         .bench-historic-note {
             max-width: 720px;
             margin: -2rem auto 2.5rem;
@@ -1560,7 +1637,8 @@
             .features-grid,
             .pricing-grid,
             .benchmark-stats,
-            .bench-v23-grid {
+            .bench-v23-grid,
+            .bench-cards-2 {
                 grid-template-columns: 1fr;
                 gap: 1rem;
             }

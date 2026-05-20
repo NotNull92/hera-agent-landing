@@ -488,121 +488,92 @@ Connected: true | Project: MyGame | Unity: 6000.0.25f1
     <section id="benchmark">
         <div class="section-header">
             <h2><em>Benchmark</em></h2>
-            <p>Across 75 calls of content-dev work,<br>how many tokens does the tool itself spend?</p>
+            <p>50 <code>exec</code> C# calls from an AI agent —<br>how many tokens does the tool itself spend?</p>
         </div>
 
-        <div class="benchmark-stats">
-            <div class="bench-stat">
-                <div class="bench-stat-label">Lite v0.0.13 · default</div>
-                <div class="bench-stat-value">25,728</div>
-                <div class="bench-stat-unit">tokens / 75 calls</div>
-                <div class="bench-stat-note">Baseline. introspection routed through <code>exec</code> + reflection.</div>
+        <div class="bench-cards-2">
+            <div class="bench-card">
+                <div class="bench-card-label">Lite v0.0.24</div>
+                <ul class="bench-card-list">
+                    <li>50 Unity Editor commands → <em>~1,600 tokens</em></li>
+                    <li>Median response <em>3 bytes</em></li>
+                    <li>Less than <em>$0.03</em> per 50-command session <code>Claude Sonnet</code> pricing</li>
+                </ul>
             </div>
-            <div class="bench-stat highlighted">
-                <div class="bench-stat-label">Pro v0.0.34 · <em>compact</em></div>
-                <div class="bench-stat-value">31,708</div>
-                <div class="bench-stat-unit">tokens / 75 calls</div>
-                <div class="bench-stat-note">1.23× the Lite total. Includes introspection, Unity Pitfalls, JSON.</div>
-            </div>
-            <div class="bench-stat">
-                <div class="bench-stat-label">Pro v0.0.34 · default</div>
-                <div class="bench-stat-value">58,282</div>
-                <div class="bench-stat-unit">tokens / 75 calls</div>
-                <div class="bench-stat-note">Human-facing mode. TUI panel and verbose output.</div>
+            <div class="bench-card">
+                <div class="bench-card-label">Pro v0.0.36</div>
+                <ul class="bench-card-list">
+                    <li>50 Unity Editor commands → <em>~1,700 tokens</em></li>
+                    <li>Median response <em>3 bytes</em></li>
+                    <li>Under <em>$0.01</em> per 50-command session <code>Claude Sonnet</code> pricing</li>
+                </ul>
             </div>
         </div>
 
         <div class="bench-finding">
-            On the shared tools (<code class="mono-gold-sm">console · state · exec · menu · meta</code>), <em>Pro compact spends 43% fewer tokens than Lite</em>.<br>
-            The rest is 10 introspection calls — about +80 tokens per call to bring back exact signatures and pitfalls.
+            <em>70% of responses are ≤ 5 bytes</em> (<code class="mono-gold-sm">OK\n</code>) — tool cost is effectively noise.<br>
+            Most tokens go into the C# the agent itself writes (input).
         </div>
-
-        <p class="bench-historic-note">
-            <strong>Historic · 2026-05-13</strong>The 75-call aggregates below were taken when the binaries were <code class="mono-gold-sm">Lite v0.0.13 · Pro v0.0.34</code>. Lite v0.0.23 now strips the exec banner, caps console at 20 lines by default, and returns Unity Objects as shallow handles — per-call tokens have dropped further. See the <em>v0.0.23 callout</em> below.
-        </p>
 
         <div class="bench-table-wrap">
             <table class="bench-table">
                 <thead>
                     <tr>
-                        <th>Avg per call (bytes)</th>
-                        <th>Lite</th>
-                        <th>Pro default</th>
-                        <th>Pro compact</th>
+                        <th>Category</th>
+                        <th>Scenarios</th>
+                        <th>Lite (B)</th>
+                        <th>Pro (B)</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td><code>status</code></td>
-                        <td>113</td>
-                        <td>113</td>
-                        <td class="col-winner">113</td>
+                        <td>Scene inspection</td>
+                        <td>8</td>
+                        <td>563</td>
+                        <td>609</td>
                     </tr>
                     <tr>
-                        <td><code>list</code> (tool catalog)</td>
-                        <td>15,121</td>
-                        <td>37,158</td>
-                        <td class="col-winner">8,501</td>
+                        <td>GameObject creation</td>
+                        <td>10</td>
+                        <td>2,095</td>
+                        <td>2,115</td>
                     </tr>
                     <tr>
-                        <td><code>describe_type</code></td>
-                        <td>2,951 <span class="bench-tag">(via exec)</span></td>
-                        <td>8,724</td>
-                        <td>6,390</td>
+                        <td>Component manipulation</td>
+                        <td>10</td>
+                        <td>1,447</td>
+                        <td>1,742</td>
                     </tr>
                     <tr>
-                        <td><code>find_method</code></td>
-                        <td>6,923 <span class="bench-tag">(via exec)</span></td>
-                        <td>15,416</td>
-                        <td>10,257</td>
+                        <td>Asset/path queries</td>
+                        <td>7</td>
+                        <td>536</td>
+                        <td>495</td>
                     </tr>
                     <tr>
-                        <td><code>list_assemblies</code></td>
-                        <td>11,119 <span class="bench-tag">(via exec)</span></td>
-                        <td>23,754</td>
-                        <td>16,514</td>
+                        <td>Math/expression</td>
+                        <td>5</td>
+                        <td>207</td>
+                        <td>209</td>
                     </tr>
                     <tr>
-                        <td>console · exec · menu · refresh · detect_assets</td>
-                        <td class="tbl-merged" colspan="3">Roughly identical at v0.0.13 (same C# both sides). Since v0.0.23, Lite also runs agent-mode compact by default (banner stripped, console capped at 20 lines) — Pro compact's edge narrows.</td>
+                        <td>Bulk ops + cleanup</td>
+                        <td>10</td>
+                        <td>1,720</td>
+                        <td>1,753</td>
+                    </tr>
+                    <tr class="bench-table-total">
+                        <td>Total</td>
+                        <td>50</td>
+                        <td>6,568</td>
+                        <td>6,923</td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
-        <div class="bench-v23">
-            <div class="bench-v23-header">
-                <span class="bench-v23-version">Lite v0.0.23 · 2026-05-20</span>
-                <h3><em>exec</em> per-call token savings</h3>
-                <p>Same work, slimmer CLI output — banner removed · compact JSON · stacktrace filter · shallow Unity Object · console cap by default.</p>
-            </div>
-            <div class="bench-v23-grid">
-                <div class="bench-v23-stat">
-                    <div class="bench-v23-label">exec banner</div>
-                    <div class="bench-v23-value">−93<span>%</span></div>
-                    <div class="bench-v23-note">28→2 B per call. <code>[hera-agent] compiling...</code> stderr noise gone.</div>
-                </div>
-                <div class="bench-v23-stat highlighted">
-                    <div class="bench-v23-label">Unity Object response</div>
-                    <div class="bench-v23-value">−99.6<span>%</span></div>
-                    <div class="bench-v23-note">14,456→60 B. <code>Transform</code> returns no longer reflection-bomb — shallow <code>{name, type, instanceID}</code>.</div>
-                </div>
-                <div class="bench-v23-stat">
-                    <div class="bench-v23-label">console default</div>
-                    <div class="bench-v23-value">−80.8<span>%</span></div>
-                    <div class="bench-v23-note">218→41.7 KB. 20-line cap by default. <code>--lines 0</code> restores old unlimited.</div>
-                </div>
-                <div class="bench-v23-stat">
-                    <div class="bench-v23-label">debug session total</div>
-                    <div class="bench-v23-value">−79.8<span>%</span></div>
-                    <div class="bench-v23-note">243K→49K B (≈48.6K tokens). exec ×6 + scene info + list + console simulated.</div>
-                </div>
-            </div>
-        </div>
-
         <p class="bench-repro">
-            Unity 6000.3.5f2 LTS · NoMoreRolls project · measured 2026-05-13 (at the time Lite v0.0.13 · Pro v0.0.34; current latest: Lite v0.0.23 · Pro v0.0.40). v0.0.23 callout measured on TidyCat, 2026-05-20.<br>
-            The measurement scripts and raw data are shared with Pro subscribers only.
+            Unity 6000.3.5f2 LTS · measured 2026-05-20. 50 scenarios across 6 categories (Scene inspection / GameObject creation / Component manipulation / Asset queries / Math / Bulk ops) — real agent-usage patterns. Measurement procedure and raw CSV under <code class="mono-gold-sm">docs/benchmarks/</code>.
         </p>
     </section>
 
