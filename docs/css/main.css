@@ -1269,6 +1269,127 @@
             border-bottom-color: var(--accent-gold);
         }
 
+        /* v0.0.23 exec slim callout */
+        .bench-v23 {
+            max-width: 960px;
+            margin: 0 auto 4rem;
+            padding: 0 1rem;
+        }
+
+        .bench-v23-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .bench-v23-version {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+        }
+
+        .bench-v23-header h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin: 0.75rem 0 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .bench-v23-header p {
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .bench-v23-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .bench-v23-stat {
+            border-top: 1px solid rgba(201, 169, 110, 0.08);
+            padding: 1.5rem 1rem 0;
+        }
+
+        .bench-v23-stat.highlighted {
+            border-top-color: var(--accent-gold);
+        }
+
+        .bench-v23-label {
+            font-size: 0.6875rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .bench-v23-value {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.01em;
+        }
+
+        .bench-v23-stat.highlighted .bench-v23-value {
+            color: var(--accent-gold);
+        }
+
+        .bench-v23-value span {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-left: 0.25rem;
+            font-weight: 400;
+        }
+
+        .bench-v23-note {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .bench-v23-note code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--accent-gold);
+            background: rgba(201, 169, 110, 0.08);
+            padding: 0.05rem 0.3rem;
+            border-radius: 3px;
+        }
+
+        .feature-card .feature-note {
+            font-size: 0.8125rem;
+            color: var(--text-muted);
+            border-left: 1px solid rgba(201, 169, 110, 0.15);
+            padding-left: 0.75rem;
+            margin: 0.75rem 0 0;
+            line-height: 1.55;
+        }
+
+        .feature-card .feature-note strong {
+            color: var(--accent-gold);
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 500;
+            font-size: 0.6875rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-right: 0.4rem;
+        }
+
+        .feature-card .feature-note code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--accent-gold);
+        }
+
         /* Responsive */
         /* 1080px and below - Z Flip 7 unfolded width */
         @media (max-width: 1080px) {
@@ -1413,9 +1534,14 @@
             .solution-grid,
             .features-grid,
             .pricing-grid,
-            .benchmark-stats {
+            .benchmark-stats,
+            .bench-v23-grid {
                 grid-template-columns: 1fr;
                 gap: 1rem;
+            }
+
+            .bench-v23-value {
+                font-size: 2rem;
             }
 
             .bench-stat.highlighted {

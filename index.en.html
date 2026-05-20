@@ -266,6 +266,7 @@ hera-agent exec "return Camera.main.name;"  # run C#</code></pre>
                 <div class="feature-code">
                     <span class="command">hera-agent exec "return Camera.main.name;"</span>
                 </div>
+                <p class="feature-note"><strong>v0.0.23</strong>Non-TTY auto-detect → agent mode (banner stripped, JSON compact). Unity Object returns now shallow <code>{name, type, instanceID}</code> — stops reflection blow-up.</p>
             </div>
             <div class="feature-card">
                 <span class="feature-tag">Lite</span>
@@ -282,6 +283,7 @@ hera-agent exec "return Camera.main.name;"  # run C#</code></pre>
                 <div class="feature-code">
                     <span class="command">hera-agent console --type error</span>
                 </div>
+                <p class="feature-note"><strong>v0.0.23</strong>Default cap 20 lines (218KB → 41.7KB, 80.8% off). Restore the old unlimited behavior explicitly with <code>--lines 0</code>.</p>
             </div>
             <div class="feature-card">
                 <span class="feature-tag">Lite</span>
@@ -564,8 +566,38 @@ Connected: true | Project: MyGame | Unity: 6000.0.25f1
             </table>
         </div>
 
+        <div class="bench-v23">
+            <div class="bench-v23-header">
+                <span class="bench-v23-version">Lite v0.0.23 · 2026-05-20</span>
+                <h3><em>exec</em> per-call token savings</h3>
+                <p>Same work, slimmer CLI output — banner removed · compact JSON · stacktrace filter · shallow Unity Object · console cap by default.</p>
+            </div>
+            <div class="bench-v23-grid">
+                <div class="bench-v23-stat">
+                    <div class="bench-v23-label">exec banner</div>
+                    <div class="bench-v23-value">−93<span>%</span></div>
+                    <div class="bench-v23-note">28→2 B per call. <code>[hera-agent] compiling...</code> stderr noise gone.</div>
+                </div>
+                <div class="bench-v23-stat highlighted">
+                    <div class="bench-v23-label">Unity Object response</div>
+                    <div class="bench-v23-value">−99.6<span>%</span></div>
+                    <div class="bench-v23-note">14,456→60 B. <code>Transform</code> returns no longer reflection-bomb — shallow <code>{name, type, instanceID}</code>.</div>
+                </div>
+                <div class="bench-v23-stat">
+                    <div class="bench-v23-label">console default</div>
+                    <div class="bench-v23-value">−80.8<span>%</span></div>
+                    <div class="bench-v23-note">218→41.7 KB. 20-line cap by default. <code>--lines 0</code> restores old unlimited.</div>
+                </div>
+                <div class="bench-v23-stat">
+                    <div class="bench-v23-label">debug session total</div>
+                    <div class="bench-v23-value">−79.8<span>%</span></div>
+                    <div class="bench-v23-note">243K→49K B (≈48.6K tokens). exec ×6 + scene info + list + console simulated.</div>
+                </div>
+            </div>
+        </div>
+
         <p class="bench-repro">
-            Unity 6000.3.5f2 LTS · NoMoreRolls project · measured 2026-05-13 (at the time Lite v0.0.13 · Pro v0.0.34; current latest: Lite v0.0.19 · Pro v0.0.40)<br>
+            Unity 6000.3.5f2 LTS · NoMoreRolls project · measured 2026-05-13 (at the time Lite v0.0.13 · Pro v0.0.34; current latest: Lite v0.0.23 · Pro v0.0.40). v0.0.23 callout measured on TidyCat, 2026-05-20.<br>
             The measurement scripts and raw data are shared with Pro subscribers only.
         </p>
     </section>

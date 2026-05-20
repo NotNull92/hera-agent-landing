@@ -266,6 +266,7 @@ hera-agent exec "return Camera.main.name;"  # C# 실행</code></pre>
                 <div class="feature-code">
                     <span class="command">hera-agent exec "return Camera.main.name;"</span>
                 </div>
+                <p class="feature-note"><strong>v0.0.23</strong>non-TTY 자동 감지 → agent mode (banner 제거, JSON compact). Unity Object 반환 시 shallow <code>{name, type, instanceID}</code>로 reflection 폭주 차단.</p>
             </div>
             <div class="feature-card">
                 <span class="feature-tag">Lite</span>
@@ -282,6 +283,7 @@ hera-agent exec "return Camera.main.name;"  # C# 실행</code></pre>
                 <div class="feature-code">
                     <span class="command">hera-agent console --type error</span>
                 </div>
+                <p class="feature-note"><strong>v0.0.23</strong>기본 20줄 cap (218KB → 41.7KB, 80.8% 절감). 옛 무제한 동작은 <code>--lines 0</code>으로 명시 복원.</p>
             </div>
             <div class="feature-card">
                 <span class="feature-tag">Lite</span>
@@ -564,8 +566,38 @@ Connected: true | Project: MyGame | Unity: 6000.0.25f1
             </table>
         </div>
 
+        <div class="bench-v23">
+            <div class="bench-v23-header">
+                <span class="bench-v23-version">Lite v0.0.23 · 2026-05-20</span>
+                <h3><em>exec</em> 호출당 토큰 절감</h3>
+                <p>같은 작업, CLI 출력만 슬림화 — banner 제거 · JSON compact · stacktrace 필터 · Unity Object shallow · console 기본 cap.</p>
+            </div>
+            <div class="bench-v23-grid">
+                <div class="bench-v23-stat">
+                    <div class="bench-v23-label">exec banner</div>
+                    <div class="bench-v23-value">−93<span>%</span></div>
+                    <div class="bench-v23-note">28→2 B / 호출. <code>[hera-agent] compiling...</code> stderr 노이즈 제거.</div>
+                </div>
+                <div class="bench-v23-stat highlighted">
+                    <div class="bench-v23-label">Unity Object 응답</div>
+                    <div class="bench-v23-value">−99.6<span>%</span></div>
+                    <div class="bench-v23-note">14,456→60 B. <code>Transform</code> 반환 시 reflection 폭주 → <code>{name, type, instanceID}</code> shallow.</div>
+                </div>
+                <div class="bench-v23-stat">
+                    <div class="bench-v23-label">console default</div>
+                    <div class="bench-v23-value">−80.8<span>%</span></div>
+                    <div class="bench-v23-note">218→41.7 KB. 기본 20줄 cap. <code>--lines 0</code>으로 옛 무제한 복원.</div>
+                </div>
+                <div class="bench-v23-stat">
+                    <div class="bench-v23-label">디버깅 세션 누적</div>
+                    <div class="bench-v23-value">−79.8<span>%</span></div>
+                    <div class="bench-v23-note">243K→49K B (≈48.6K 토큰). exec ×6 + scene info + list + console 시뮬.</div>
+                </div>
+            </div>
+        </div>
+
         <p class="bench-repro">
-            Unity 6000.3.5f2 LTS · NoMoreRolls 프로젝트 · 2026-05-13 측정 (당시 Lite v0.0.13 · Pro v0.0.34, 현재 최신: Lite v0.0.19 · Pro v0.0.40)<br>
+            Unity 6000.3.5f2 LTS · NoMoreRolls 프로젝트 · 2026-05-13 측정 (당시 Lite v0.0.13 · Pro v0.0.34, 현재 최신: Lite v0.0.23 · Pro v0.0.40). v0.0.23 callout은 TidyCat 프로젝트, 2026-05-20 측정.<br>
             측정 스크립트와 원본 데이터는 Pro 구독자에게만 공개됩니다.
         </p>
     </section>
