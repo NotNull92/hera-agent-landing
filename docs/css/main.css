@@ -1195,6 +1195,31 @@
             font-weight: 600;
         }
 
+        .bench-historic-note {
+            max-width: 720px;
+            margin: -2rem auto 2.5rem;
+            padding: 0.75rem 1rem;
+            border-left: 2px solid rgba(201, 169, 110, 0.4);
+            background: rgba(201, 169, 110, 0.04);
+            color: var(--text-muted);
+            font-size: 0.8125rem;
+            line-height: 1.65;
+            font-style: italic;
+            word-break: keep-all;
+            overflow-wrap: anywhere;
+        }
+
+        .bench-historic-note strong {
+            font-family: 'JetBrains Mono', monospace;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 0.6875rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent-gold);
+            margin-right: 0.4rem;
+        }
+
         .bench-table-wrap {
             max-width: 760px;
             margin: 0 auto 3rem;

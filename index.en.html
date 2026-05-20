@@ -517,6 +517,10 @@ Connected: true | Project: MyGame | Unity: 6000.0.25f1
             The rest is 10 introspection calls — about +80 tokens per call to bring back exact signatures and pitfalls.
         </div>
 
+        <p class="bench-historic-note">
+            <strong>Historic · 2026-05-13</strong>The 75-call aggregates below were taken when the binaries were <code class="mono-gold-sm">Lite v0.0.13 · Pro v0.0.34</code>. Lite v0.0.23 now strips the exec banner, caps console at 20 lines by default, and returns Unity Objects as shallow handles — per-call tokens have dropped further. See the <em>v0.0.23 callout</em> below.
+        </p>
+
         <div class="bench-table-wrap">
             <table class="bench-table">
                 <thead>
@@ -560,7 +564,7 @@ Connected: true | Project: MyGame | Unity: 6000.0.25f1
                     </tr>
                     <tr>
                         <td>console · exec · menu · refresh · detect_assets</td>
-                        <td class="tbl-merged" colspan="3">Roughly identical (same C# both sides)</td>
+                        <td class="tbl-merged" colspan="3">Roughly identical at v0.0.13 (same C# both sides). Since v0.0.23, Lite also runs agent-mode compact by default (banner stripped, console capped at 20 lines) — Pro compact's edge narrows.</td>
                     </tr>
                 </tbody>
             </table>

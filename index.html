@@ -517,6 +517,10 @@ Connected: true | Project: MyGame | Unity: 6000.0.25f1
             남은 차이는 introspection 10번 분량 — 한 콜당 약 +80 토큰으로 정확한 시그니처와 pitfalls를 직접 가져옵니다.
         </div>
 
+        <p class="bench-historic-note">
+            <strong>Historic · 2026-05-13</strong>아래 75-호출 집계는 측정 당시 <code class="mono-gold-sm">Lite v0.0.13 · Pro v0.0.34</code> 기준. v0.0.23 Lite는 exec banner 제거 · console 기본 20줄 cap · Unity Object shallow가 적용되어 호출당 토큰이 더 줄었습니다 — 아래 <em>v0.0.23 callout</em> 참고.
+        </p>
+
         <div class="bench-table-wrap">
             <table class="bench-table">
                 <thead>
@@ -560,7 +564,7 @@ Connected: true | Project: MyGame | Unity: 6000.0.25f1
                     </tr>
                     <tr>
                         <td>console · exec · menu · refresh · detect_assets</td>
-                        <td class="tbl-merged" colspan="3">거의 같음 (양쪽 같은 C# 코드)</td>
+                        <td class="tbl-merged" colspan="3">v0.0.13 시점엔 거의 같음 (양쪽 같은 C# 코드). v0.0.23부터 Lite도 agent mode 자동 compact (banner 제거 · console 20줄 cap) — Pro compact 우위는 좁아짐.</td>
                     </tr>
                 </tbody>
             </table>
