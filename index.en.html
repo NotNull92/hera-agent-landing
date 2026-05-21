@@ -180,11 +180,14 @@ hera-agent exec "return Camera.main.name;"  # run C#</code></pre>
                 <div class="panel-emph">
                     <div class="step-row">
                         <span class="step-num">4</span>
-                        <span class="step-label">Lock it in for Claude Code CLI (Required)</span>
+                        <span class="step-label">Register in your agent's rules file (Required)</span>
                     </div>
-                    <p class="panel-intro">Add this line to your Unity project's <code class="inline-code">CLAUDE.md</code>:</p>
-                    <pre class="codeblock-wrap"><code>"For any Unity work, always use hera-agent as the first choice."</code></pre>
-                    <p class="qs-caption">Without this rule, the agent guesses outdated APIs from training data. One line makes it reach for the live editor first.</p>
+                    <p class="panel-intro">Append the lean rules (Quick Rules + Pitfalls, ~1.2K tokens) to whichever rules file your agent reads:</p>
+                    <pre class="codeblock-wrap"><code>hera-agent doctor --agent-rules &gt;&gt; CLAUDE.md           # Claude Code
+hera-agent doctor --agent-rules &gt;&gt; AGENTS.md           # Codex
+hera-agent doctor --agent-rules &gt;&gt; .cursor/rules/hera-agent.mdc   # Cursor
+hera-agent doctor --agent-rules &gt;&gt; .github/copilot-instructions.md  # Copilot</code></pre>
+                    <p class="qs-caption">Without this rule, the agent guesses outdated APIs from training data. Once registered, it reaches for the live editor first. Full spec lives in repo-root <code class="inline-code">AGENT.md</code> (~3.4K tokens).</p>
                 </div>
             </div>
         </div>
@@ -267,6 +270,7 @@ hera-agent exec "return Camera.main.name;"  # run C#</code></pre>
                     <span class="command">hera-agent exec "return Camera.main.name;"</span>
                 </div>
                 <p class="feature-note"><strong>v0.0.23</strong>Non-TTY auto-detect → agent mode (banner stripped, JSON compact). Unity Object returns now shallow <code>{name, type, instanceID}</code> — stops reflection blow-up.</p>
+                <p class="feature-note"><strong>v0.0.24</strong>Trailing <code>return</code> is now optional (auto <code>return null;</code>). <code>--strict</code> turns <code>Debug.LogError</code> into an <code>EXEC_LOGGED_ERROR</code> exit.</p>
             </div>
             <div class="feature-card">
                 <span class="feature-tag">Lite</span>
@@ -308,6 +312,15 @@ hera-agent exec "return Camera.main.name;"  # run C#</code></pre>
                 <div class="feature-code">
                     <span class="command">hera-agent screenshot --view game --width 3840 --height 2160</span>
                 </div>
+            </div>
+            <div class="feature-card">
+                <span class="feature-tag">Lite</span>
+                <h3>AGENT.md — any AI coding agent</h3>
+                <p>Tool-neutral usage guide. Register hera-agent once for Claude Code · Codex · Cursor · Copilot · Continue.dev — same flow either way.</p>
+                <div class="feature-code">
+                    <span class="command">hera-agent doctor --agent-rules &gt;&gt; CLAUDE.md</span>
+                </div>
+                <p class="feature-note"><strong>v0.0.24</strong><code>doctor --agent-rules</code> appends Quick Rules + Pitfalls (~1.2K tokens). Full spec in <code>AGENT.md</code> (~3.4K tokens).</p>
             </div>
         </div>
 
@@ -689,7 +702,13 @@ Connected: true | Project: MyGame | Unity: 6000.0.25f1
                     <span class="faq-icon">+</span>
                 </button>
                 <div class="faq-answer">
-                    <p>Yes. Hera is just a CLI tool. It runs in any shell. It isn't tied to MCP, so call it from Cursor, Claude Code, or your own scripts.</p>
+                    <p>Yes — Hera works with any AI coding agent: <strong>Claude Code · Codex · Cursor · Copilot · Continue.dev</strong>. Same setup either way: append the lean rules to whichever rules file your agent reads:</p>
+                    <pre class="codeblock-wrap"><code>hera-agent doctor --agent-rules &gt;&gt; CLAUDE.md           # Claude Code
+hera-agent doctor --agent-rules &gt;&gt; AGENTS.md           # Codex
+hera-agent doctor --agent-rules &gt;&gt; .cursor/rules/hera-agent.mdc   # Cursor
+hera-agent doctor --agent-rules &gt;&gt; .github/copilot-instructions.md  # Copilot
+hera-agent doctor --agent-rules &gt;&gt; .continuerules     # Continue.dev (Pro)</code></pre>
+                    <p>The full usage guide lives in the repo-root <code>AGENT.md</code> (~3.4K tokens). Hera is a plain CLI, not tied to MCP — call it from any shell or your own scripts.</p>
                 </div>
             </div>
             <div class="faq-item">
@@ -725,7 +744,7 @@ Connected: true | Project: MyGame | Unity: 6000.0.25f1
                     <span class="faq-icon">+</span>
                 </button>
                 <div class="faq-answer">
-                    <p>Measured directly while calling hera-agent / hera-agent-pro as tools from Claude Code CLI. On a 75-call content-dev workload Lite spends about 26K tokens and Pro compact about 32K. At Claude Sonnet 4 input pricing ($3 / 1M tokens) that's $0.08–0.10 per session — five sessions a day for 30 days is roughly $12–14 a month. On the shared tools, Pro compact actually spends 43% fewer tokens than Lite. Full setup is in the Benchmark section above.</p>
+                    <p>Measured directly while calling hera-agent / hera-agent-pro as tools from AI agents (Claude Code, Codex, etc.). On a realistic <strong>50-call exec C# workload</strong>, Lite spends ~1,600 tokens and Pro ~1,700 tokens. At Claude Sonnet pricing that's <strong>under $0.03</strong> per session for Lite and <strong>under $0.01</strong> for Pro — even five sessions a day for 30 days stays under $5 / $2 a month. 70% of responses are ≤ 5 bytes (<code>OK\n</code>), so tool cost is effectively noise; most tokens go into the C# the agent itself writes (input). Full setup is in the Benchmark section above.</p>
                 </div>
             </div>
             <div class="faq-item">

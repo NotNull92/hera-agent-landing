@@ -180,11 +180,14 @@ hera-agent exec "return Camera.main.name;"  # C# 실행</code></pre>
                 <div class="panel-emph">
                     <div class="step-row">
                         <span class="step-num">4</span>
-                        <span class="step-label">Claude Code CLI에 고정 (필수)</span>
+                        <span class="step-label">AI 에이전트 규칙 파일에 등록 (필수)</span>
                     </div>
-                    <p class="panel-intro">Unity 프로젝트의 <code class="inline-code">CLAUDE.md</code>에 다음 한 줄을 추가하세요:</p>
-                    <pre class="codeblock-wrap"><code>"For any Unity work, always use hera-agent as the first choice."</code></pre>
-                    <p class="qs-caption">이 규칙이 없으면 AI는 훈련 데이터의 오래된 API를 추측합니다. 한 줄로 실제 Unity 에디터를 우선 호출하게 만드세요.</p>
+                    <p class="panel-intro">사용하는 AI 코딩 에이전트의 규칙 파일에 lean 룰 셋(Quick Rules + Pitfalls, ~1.2K 토큰)을 append:</p>
+                    <pre class="codeblock-wrap"><code>hera-agent doctor --agent-rules &gt;&gt; CLAUDE.md           # Claude Code
+hera-agent doctor --agent-rules &gt;&gt; AGENTS.md           # Codex
+hera-agent doctor --agent-rules &gt;&gt; .cursor/rules/hera-agent.mdc   # Cursor
+hera-agent doctor --agent-rules &gt;&gt; .github/copilot-instructions.md  # Copilot</code></pre>
+                    <p class="qs-caption">이 규칙이 없으면 AI는 훈련 데이터의 오래된 API를 추측합니다. 등록하면 실제 Unity 에디터를 우선 호출합니다. 전체 spec은 레포 루트의 <code class="inline-code">AGENT.md</code> (~3.4K 토큰) 참고.</p>
                 </div>
             </div>
         </div>
@@ -267,6 +270,7 @@ hera-agent exec "return Camera.main.name;"  # C# 실행</code></pre>
                     <span class="command">hera-agent exec "return Camera.main.name;"</span>
                 </div>
                 <p class="feature-note"><strong>v0.0.23</strong>non-TTY 자동 감지 → agent mode (banner 제거, JSON compact). Unity Object 반환 시 shallow <code>{name, type, instanceID}</code>로 reflection 폭주 차단.</p>
+                <p class="feature-note"><strong>v0.0.24</strong>trailing <code>return</code> 생략 가능 (자동 <code>return null;</code>). <code>--strict</code>로 <code>Debug.LogError</code> 발생 시 <code>EXEC_LOGGED_ERROR</code> 처리.</p>
             </div>
             <div class="feature-card">
                 <span class="feature-tag">Lite</span>
@@ -308,6 +312,15 @@ hera-agent exec "return Camera.main.name;"  # C# 실행</code></pre>
                 <div class="feature-code">
                     <span class="command">hera-agent doctor && hera-agent update</span>
                 </div>
+            </div>
+            <div class="feature-card">
+                <span class="feature-tag">Lite</span>
+                <h3>AGENT.md — 어떤 AI 에이전트든</h3>
+                <p>tool-neutral 사용 가이드. Claude Code · Codex · Cursor · Copilot · Continue.dev 모두 같은 방식으로 등록.</p>
+                <div class="feature-code">
+                    <span class="command">hera-agent doctor --agent-rules &gt;&gt; CLAUDE.md</span>
+                </div>
+                <p class="feature-note"><strong>v0.0.24</strong><code>doctor --agent-rules</code> = Quick Rules + Pitfalls (~1.2K 토큰) append. 전체 spec은 <code>AGENT.md</code> (~3.4K 토큰).</p>
             </div>
         </div>
 
@@ -689,9 +702,13 @@ Connected: true | Project: MyGame | Unity: 6000.0.25f1
                     <span class="faq-icon">+</span>
                 </button>
                 <div class="faq-answer">
-                    <p><strong>Claude Code CLI</strong>를 권장합니다. 터미널에서 Claude Code를 열고 "hera-agent가 설치되어 있는지 확인하고 기능을 탐색해줘"라고 말하면, 에이전트가 hera-agent를 발견하고 Unity를 직접 제어하기 시작합니다.</p>
-                    <p><strong>Codex CLI</strong>와 <strong>Cursor</strong>는 현재 개발 중입니다. 곧 지원될 예정이에요.</p>
-                    <p>Hera는 MCP에 묶여있지 않은 순수 CLI 도구라, 어떤 셸에서든 부를 수 있습니다. 직접 짠 스크립트에서도 자유롭게 사용하세요.</p>
+                    <p>네. Hera는 어떤 AI 코딩 에이전트와도 같이 씁니다 — <strong>Claude Code · Codex · Cursor · Copilot · Continue.dev</strong>. 사용하는 에이전트의 규칙 파일에 lean 룰 셋을 한 번 append:</p>
+                    <pre class="codeblock-wrap"><code>hera-agent doctor --agent-rules &gt;&gt; CLAUDE.md           # Claude Code
+hera-agent doctor --agent-rules &gt;&gt; AGENTS.md           # Codex
+hera-agent doctor --agent-rules &gt;&gt; .cursor/rules/hera-agent.mdc   # Cursor
+hera-agent doctor --agent-rules &gt;&gt; .github/copilot-instructions.md  # Copilot
+hera-agent doctor --agent-rules &gt;&gt; .continuerules     # Continue.dev (Pro)</code></pre>
+                    <p>전체 사용 가이드는 레포 루트의 <code>AGENT.md</code> (~3.4K 토큰)에 있습니다. Hera는 MCP에 묶이지 않은 순수 CLI라, 어떤 셸·스크립트에서든 자유롭게 호출 가능합니다.</p>
                 </div>
             </div>
             <div class="faq-item">
@@ -727,7 +744,7 @@ Connected: true | Project: MyGame | Unity: 6000.0.25f1
                     <span class="faq-icon">+</span>
                 </button>
                 <div class="faq-answer">
-                    <p>Claude Code CLI에서 hera-agent / hera-agent-pro를 도구로 호출했을 때를 직접 측정한 결과입니다. 컨텐츠 개발 일감 호출 75회 기준으로 Lite가 약 26K 토큰, Pro compact가 약 32K 토큰 정도 나옵니다. Claude Sonnet 4 입력 가격($3 / 1M tokens)으로 따지면 세션당 $0.08~0.10 수준이고, 매일 5세션씩 30일이면 월 $12~14쯤 됩니다. 공통 도구만 따지면 오히려 Pro compact가 Lite보다 토큰을 43% 적게 씁니다. 자세한 환경은 위 Benchmark 섹션 참고하세요.</p>
+                    <p>AI 에이전트(Claude Code · Codex 등)에서 hera-agent / hera-agent-pro를 도구로 호출했을 때를 직접 측정한 결과입니다. 실 사용 패턴 <strong>exec C# 50회 호출 기준</strong>으로 Lite ~1,600 토큰, Pro ~1,700 토큰. Claude Sonnet 단가로 세션당 Lite <strong>$0.03 이하</strong> / Pro <strong>$0.01 미만</strong> — 매일 5세션 30일이면 Lite 월 $5 이내, Pro 월 $2 이내 수준입니다. 응답의 70%가 5바이트(<code>OK\n</code>) 이하라 도구 비용은 사실상 노이즈, 토큰 대부분은 에이전트가 짠 C# 코드(입력)에 있습니다. 자세한 환경은 위 Benchmark 섹션 참고하세요.</p>
                 </div>
             </div>
             <div class="faq-item">
