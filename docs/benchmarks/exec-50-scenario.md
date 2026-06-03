@@ -1,9 +1,9 @@
-# Benchmark: 50회 `exec` C# 명령 실사용 토큰 비용 (v0.0.24)
+# Benchmark: 50회 `exec` C# 명령 실사용 토큰 비용 (hera-agent-unity v0.0.24+)
 
 > 한 줄 요약: **50개의 실제 사용 패턴 exec 명령 = 총 6,568 bytes (~1,622 토큰)**. 명령당 평균 131 bytes / 32 토큰. 35개 (70%) 호출이 5 bytes 이하의 응답을 받음.
 
 - **측정일**: 2026-05-20
-- **CLI**: `hera-agent v0.0.24` (Windows, GitHub Release 자산)
+- **CLI**: `hera-agent-unity v0.0.24` (Windows, GitHub Release 자산)
 - **Connector**: AgentConnector 0.0.20 (git tag `v0.0.24` 시점)
 - **Unity**: 6000.3.5f2
 - **대상 프로젝트**: TidyCat (실 게임 프로젝트, 활성 씬 `Home.unity`)
@@ -42,14 +42,14 @@
 - CLI v0.0.24 (PATH 설치본). 호출 시 `HERA_AGENT_NO_PATH_CHECK=1` 만 지정 (path 충돌 경고 억제 — bench 측정에 무관한 노이즈).
 - Connector 0.0.20 (TidyCat manifest는 `?path=AgentConnector` 로 main HEAD fetch — v0.0.24 시점 코드).
 - 비-TTY(파이프) 호출이라 v0.0.24 의 자동 동작이 그대로 발동:
-  - `[hera-agent] compiling...` 배너 stderr **억제됨** (항목 A)
+  - `[hera-agent-unity] compiling...` 배너 stderr **억제됨** (항목 A)
   - 응답 JSON **compact 출력** (항목 B)
   - `Update available` notice **억제됨** (항목 I)
 
 ### 측정 단위
 
 - **입력 (input_bytes)**: 각 시나리오 `.cs` 파일의 raw 바이트 (`wc -c`)
-- **응답 (output_bytes)**: `hera-agent exec --file <X>.cs 2>&1` 의 stdout + stderr 합산. Claude Code의 Bash 도구는 양쪽을 합쳐 컨텍스트에 넣기 때문에 합산이 적절.
+- **응답 (output_bytes)**: `hera-agent-unity exec --file <X>.cs 2>&1` 의 stdout + stderr 합산. Claude Code의 Bash 도구는 양쪽을 합쳐 컨텍스트에 넣기 때문에 합산이 적절.
 - **토큰 추정**: 영문 기준 `chars ÷ 4` (OpenAI/Anthropic tokenizer 평균치).
 
 ### 측정 절차
@@ -61,14 +61,14 @@ mkdir -p .omc/bench-50
 for i in $(seq -w 1 50); do
     f="s$i.cs"
     input_bytes=$(wc -c < "$f")
-    output=$(hera-agent exec --file "$f" </dev/null 2>&1)
+    output=$(hera-agent-unity exec --file "$f" </dev/null 2>&1)
     output_bytes=$((${#output} + 1))
     total=$((input_bytes + output_bytes))
     echo "s$i,$input_bytes,$output_bytes,$total"
 done
 ```
 
-> `</dev/null` 리다이렉트 필수. `hera-agent exec --file`은 stdin이 비-TTY일 때 stdin을 읽으려고 시도하므로, 명시적으로 닫지 않으면 bash `$(...)` 안에서 무한 대기.
+> `</dev/null` 리다이렉트 필수. `hera-agent-unity exec --file`은 stdin이 비-TTY일 때 stdin을 읽으려고 시도하므로, 명시적으로 닫지 않으면 bash `$(...)` 안에서 무한 대기.
 
 원본 CSV: [`exec-50-scenario-results.csv`](./exec-50-scenario-results.csv)
 
@@ -233,10 +233,10 @@ done
 
 ### 50회 세션 = **약 1,600 토큰**
 
-LLM 에이전트가 위의 50개 작업을 모두 수행하는 **한 세션**에서 hera-agent 도구 왕복으로 소모하는 토큰은 약 1,600개. 이 중:
+LLM 에이전트가 위의 50개 작업을 모두 수행하는 **한 세션**에서 hera-agent-unity 도구 왕복으로 소모하는 토큰은 약 1,600개. 이 중:
 
 - 입력측 (에이전트가 작성한 C# 코드, 에이전트의 출력 토큰): ~1,370 tokens
-- 응답측 (hera-agent 응답, 에이전트의 컨텍스트로 들어가는 입력 토큰): ~270 tokens
+- 응답측 (hera-agent-unity 응답, 에이전트의 컨텍스트로 들어가는 입력 토큰): ~270 tokens
 
 > 참고: tool_use / tool_result 프레임 자체의 오버헤드 (각 호출당 50–150 토큰) 는 본 측정에 포함되지 않음. 실제 LLM API 비용은 이 위에 더해짐.
 
@@ -276,26 +276,26 @@ LLM 에이전트가 위의 50개 작업을 모두 수행하는 **한 세션**에
 
 ```bash
 # 사전 조건
-hera-agent --version    # v0.0.24 이상
-hera-agent status       # Unity ready
+hera-agent-unity --version    # v0.0.24 이상
+hera-agent-unity status       # Unity ready
 
 # 측정
 cd <TidyCat>/.omc/bench-50
 for i in $(seq -w 1 50); do
     f="s$i.cs"
     input_bytes=$(wc -c < "$f")
-    output=$(hera-agent exec --file "$f" </dev/null 2>&1)
+    output=$(hera-agent-unity exec --file "$f" </dev/null 2>&1)
     output_bytes=$((${#output} + 1))
     echo "s$i,$input_bytes,$output_bytes"
 done
 
 # 정리
-hera-agent exec </dev/null "var all = UnityEngine.Object.FindObjectsByType<GameObject>(FindObjectsSortMode.None).Where(g => g.name.StartsWith(\"bench_\")).ToList(); int n=0; foreach(var g in all){ if(g!=null){ GameObject.DestroyImmediate(g); n++; }} return n;"
+hera-agent-unity exec </dev/null "var all = UnityEngine.Object.FindObjectsByType<GameObject>(FindObjectsSortMode.None).Where(g => g.name.StartsWith(\"bench_\")).ToList(); int n=0; foreach(var g in all){ if(g!=null){ GameObject.DestroyImmediate(g); n++; }} return n;"
 ```
 
 ### 알려진 함정
 
-1. **`</dev/null` 필수**: `hera-agent exec --file` 가 `$(...)` 안에 있을 때 stdin을 명시 닫지 않으면 무한 대기.
+1. **`</dev/null` 필수**: `hera-agent-unity exec --file` 가 `$(...)` 안에 있을 때 stdin을 명시 닫지 않으면 무한 대기.
 2. **GameObject.Find은 비활성 오브젝트 무시**: s22 → s23/s24/s28 NullRef 경로. 의도적 보존 (실제 에이전트가 자주 하는 실수의 비용을 보여주기 위함).
 3. **csc 콜드 스타트**: 첫 호출은 5~15초 (csc 자체 로딩). 본 측정의 50회는 두 번째 이후만 1~2초.
 
@@ -303,14 +303,14 @@ hera-agent exec </dev/null "var all = UnityEngine.Object.FindObjectsByType<GameO
 
 ## 8. 결론
 
-**v0.0.24 의 hera-agent로 LLM 에이전트가 실제 Unity 작업 50회를 수행 시:**
+**v0.0.24 의 hera-agent-unity로 LLM 에이전트가 실제 Unity 작업 50회를 수행 시:**
 
 - 약 **1.6K 토큰** 소모 (도구 응답·요청 raw)
 - 호출당 평균 **32 토큰**
 - 응답의 70%가 5바이트 이하 — 사실상 노이즈
 - 같은 워크로드를 v0.0.23 으로 돌렸다면 약 24% 더 컸을 것
 
-**LLM 에이전트의 코딩 워크플로에 hera-agent를 통합해도 API 비용 부담이 거의 없음** — 응답 토큰은 미미하고, 비용 대부분은 에이전트가 작성한 C# 코드(입력 토큰)에 있음.
+**LLM 에이전트의 코딩 워크플로에 hera-agent-unity를 통합핵도 API 비용 부담이 거의 없음** — 응답 토큰은 미미하고, 비용 대부분은 에이전트가 작성한 C# 코드(입력 토큰)에 있음.
 
 ---
 
@@ -319,3 +319,4 @@ hera-agent exec </dev/null "var all = UnityEngine.Object.FindObjectsByType<GameO
 | 날짜 | 버전 | 변경 |
 |------|------|------|
 | 2026-05-20 | v0.0.24 (initial) | 50개 시나리오 6 카테고리 측정. 총 6,568 bytes / ~1.6K 토큰. |
+| 2026-06-03 | hera-agent-unity unified | Lite/Pro 구분 제거. `hera-agent` → `hera-agent-unity`로 명령어 통일. 문서 재작성. |
