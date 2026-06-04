@@ -310,7 +310,7 @@ hera-agent-unity exec </dev/null "var all = UnityEngine.Object.FindObjectsByType
 - 응답의 70%가 5바이트 이하 — 사실상 노이즈
 - 같은 워크로드를 v0.0.23 으로 돌렸다면 약 24% 더 컸을 것
 
-**LLM 에이전트의 코딩 워크플로에 hera-agent-unity를 통합핵도 API 비용 부담이 거의 없음** — 응답 토큰은 미미하고, 비용 대부분은 에이전트가 작성한 C# 코드(입력 토큰)에 있음.
+**LLM 에이전트의 코딩 워크플로에 hera-agent-unity를 통합해도 API 비용 부담이 거의 없음** — 응답 토큰은 미미하고, 비용 대부분은 에이전트가 작성한 C# 코드(입력 토큰)에 있음.
 
 ---
 

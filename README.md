@@ -18,12 +18,12 @@ Hera는 명령에 응답합니다 — 추론하지 않고, 가정하지 않고. 
 
 ## 이 저장소
 
-Hera Agent 랜딩페이지(`gh-pages` 브랜치로 배포). 제품 본체는 별도 저장소에 있습니다.
+hera-agent-unity 랜딩페이지(`gh-pages` 브랜치로 배포). 제품 본체는 별도 저장소에 있습니다.
 
-- **Lite** — MIT · 평생 무료
-  [`NotNull92/hera-agent`](https://github.com/NotNull92/hera-agent)
-- **Pro** — 비공개 상업 라이선스 · Patreon 구독자 한정
-  [`patreon.com/c/IndieAlchemist92`](https://www.patreon.com/c/IndieAlchemist92)
+- **hera-agent-unity** — MIT · 전 기능 무료
+  [`NotNull92/hera-agent-unity`](https://github.com/NotNull92/hera-agent-unity)
+
+> 기존 `hera-agent`(Lite)와 `hera-agent-pro`(Pro)는 `hera-agent-unity` 하나로 통합되었습니다. 모든 기능이 MIT 라이선스로 묶여 제공됩니다.
 
 ## 마스코트
 
@@ -33,4 +33,4 @@ Hera. 추측하지 않고 가져옵니다.
 
 ## 라이선스
 
-이 랜딩페이지 저장소는 MIT 라이선스로 공개됩니다. 제품 본체의 라이선스는 각 저장소를 참조하세요.
+이 랜딩페이지 저장소와 제품 본체(`hera-agent-unity`) 모두 MIT 라이선스로 공개됩니다.
