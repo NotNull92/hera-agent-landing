@@ -27,7 +27,7 @@ hera-agent-unity 랜딩페이지(`gh-pages` 브랜치로 배포). 제품 본체�
 
 ## 마스코트
 
-<img src="docs/hera.png" alt="Hera" width="180" />
+<img src="docs/hera-unity-logo.png" alt="hera-agent-unity" width="180" />
 
 Hera. 추측하지 않고 가져옵니다.
 
